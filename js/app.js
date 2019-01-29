@@ -4,6 +4,8 @@ var multiplier = 1;
 var money = 0;
 var ratsTotal = 0;
 
+var localStorage = window.localStorage;
+
 class Rats{
     constructor(){}
     money(a){
@@ -55,7 +57,42 @@ $(".ratBtn").click(function(e){
         $(e.target).text(clickedRat.text + clickedRat.cost.toFixed(1).toString() + "$");
     }
 });
+$("#saveBtn").click(function(e){
+    saveData();
 });
+
+
+});
+
+function getJsonData(){
+    json = {};
+    json.mps = mps;
+    json.mpc = mpc;
+    json.multiplier = multiplier;
+    json.money = money;
+    json.ratsTotal = ratsTotal;
+    console.log(json);
+    return json;
+}
+
+function saveData(){
+    json = getJsonData();
+    localStorage.setItem('data',btoa(JSON.stringify(json)));
+}
+
+function loadSaveData(){
+    json64 = localStorage.getItem('data');
+    console.log(json64);
+    if(json64 === null) return;
+    json = JSON.parse(atob(json64));
+    mps = json.mps;
+    mpc = json.mpc;
+    multiplier = json.multiplier;
+    money = json.money;
+    ratsTotal = json.ratsTotal;
+}
+
+loadSaveData();
 
 function main(){
     $("#money").text("Moneis: " + money.toFixed(1).toString());
