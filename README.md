@@ -1,2 +1,2 @@
-# ratClicker
-This is probably the best rat clicker out there.
+# Rat Clicker
+The best rat clicker money can buy.
