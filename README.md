@@ -1,6 +1,6 @@
 # Rat Clicker
 The best rat clicker money can buy.
 
-##TODO:
+## TODO:
 -Add animations via canvas
 -make buttons look better
