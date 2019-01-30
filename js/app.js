@@ -28,6 +28,26 @@ class Rats{
         this.costPercent = a;
         return this;
     }
+    toJson(){
+        var data = {};
+        data.cost = this.cost;
+        data.costPercent = this.costPercent;
+        data.text = this.text;
+        data.money = this.money;
+        data.moneyPercent = this.moneyPercent;
+        return data;
+    }
+    static fromJson(data){
+        var rat = new Rats().cost(data.cost)
+        .costPercent(data.costPercent)
+        .money(data.money)
+        .moneyPercent(data.moneyPercent)
+        .text(data.text);
+        return rat;
+    }
+    getFullText(){
+        return (this.text + this.cost.toFixed(1).toString() + "$");
+    }
 }
 
 var vals = {};
@@ -40,30 +60,6 @@ vals.obamaRat = new Rats().cost(57000).costPercent(1.05).money(1).moneyPercent(1
 vals.loanRat = new Rats().cost(1).costPercent(1.5).money(1).moneyPercent(1.1).text("Small loan of a million rats Rat | ");
 vals.gambinoRat = new Rats().cost(999999999999999).costPercent(1.05).money(1).moneyPercent(1.01).text("Gambino Rat | ");
 
-$(function(){
-$("#rat").click(function(){
-    money += mpc;
-});
-$(".ratBtn").click(function(e){
-    var clickedRat = vals[e.target.id];
-    if(clickedRat.cost > money){
-        alertify.error("ur broke sir");
-    }else{
-        money -= clickedRat.cost;
-        mps += clickedRat.money;
-        clickedRat.cost *= clickedRat.costPercent;
-        clickedRat.money *= clickedRat.moneyPercent;
-        ratsTotal++;
-        $(e.target).text(clickedRat.text + clickedRat.cost.toFixed(1).toString() + "$");
-    }
-});
-$("#saveBtn").click(function(e){
-    saveData();
-});
-
-
-});
-
 function getJsonData(){
     json = {};
     json.mps = mps;
@@ -71,18 +67,27 @@ function getJsonData(){
     json.multiplier = multiplier;
     json.money = money;
     json.ratsTotal = ratsTotal;
-    console.log(json);
     return json;
+}
+
+function getRatsJson(){
+    var ratTotalJson = {};
+    for (var key in vals) {
+        if (!vals.hasOwnProperty(key)) continue;
+        var ratDataJson = vals[key].toJson();
+        ratTotalJson[key] = ratDataJson;
+    }
+    return ratTotalJson;
 }
 
 function saveData(){
     json = getJsonData();
+    json.ratData = getRatsJson();
     localStorage.setItem('data',btoa(JSON.stringify(json)));
 }
 
 function loadSaveData(){
     json64 = localStorage.getItem('data');
-    console.log(json64);
     if(json64 === null) return;
     json = JSON.parse(atob(json64));
     mps = json.mps;
@@ -90,9 +95,47 @@ function loadSaveData(){
     multiplier = json.multiplier;
     money = json.money;
     ratsTotal = json.ratsTotal;
+
+    var ratData = json.ratData;
+    for (var key in vals) {
+        if (!vals.hasOwnProperty(key)) continue;
+        vals[key] = Rats.fromJson(ratData[key]);
+    }
+}
+
+function updateVals(){
+    for (var key in vals) {
+        if (!vals.hasOwnProperty(key)) continue;
+        var rat = vals[key];
+        $("#"+key).text(rat.getFullText());
+    }
 }
 
 loadSaveData();
+
+$(function(){
+    updateVals();
+    $("#rat").click(function(){
+        money += mpc;
+    });
+    $(".ratBtn").click(function(e){
+        var clickedRat = vals[e.target.id];
+        if(clickedRat.cost > money){
+            alertify.error("ur broke sir");
+        }else{
+            money -= clickedRat.cost;
+            mps += clickedRat.money;
+            clickedRat.cost *= clickedRat.costPercent;
+            clickedRat.money *= clickedRat.moneyPercent;
+            ratsTotal++;
+            $(e.target).text(clickedRat.getFullText());
+        }
+    });
+    $("#saveBtn").click(function(e){
+        saveData();
+    });
+    
+    });
 
 function main(){
     $("#money").text("Moneis: " + money.toFixed(1).toString());
@@ -102,3 +145,4 @@ function main(){
     money += mps/10;
 }
 new AdjustingInterval(main, 50).start();//10 fps pretty much
+new AdjustingInterval(saveData, 1000*60*3).start();
