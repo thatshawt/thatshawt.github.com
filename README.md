@@ -5,4 +5,6 @@ The best rat clicker money can buy.
 ```
 -Add animations via canvas
 -make buttons look better
+-maybe leaderboard?
+-add menu
 ```
