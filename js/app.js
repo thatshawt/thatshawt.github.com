@@ -169,7 +169,7 @@ function main(){
     $("#mpc").text("Money clicke :" + mpc.toFixed(1).toString());
     $("#rats").text("u got " + ratsTotal.toString() + " rats");
     money += mps/fps;
-    checkAchievements();
+    //checkAchievements();
 }
 new AdjustingInterval(main, fps).start();//50 fps pretty much
 new AdjustingInterval(saveData, 1000*60*3).start();
