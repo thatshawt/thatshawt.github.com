@@ -137,7 +137,7 @@ function checkAchievements(){
 */
 loadSaveData();
 
-var brokeMessages = ["ur broke sir","no monei","no","frikin heck"];
+var brokeMessages = ["ur broke sir","no monei","no","frikin heck","stop","bruh moment","E","F","cmon dood", "no u"];
 $(function(){
     loadButtons();
     updateVals();
