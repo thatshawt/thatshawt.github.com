@@ -6,24 +6,24 @@
     <link rel="stylesheet" href="css/alertify.min.css"></link>
     <link rel="stylesheet" href="css/default.css"></link>
     <link href="https://fonts.googleapis.com/css?family=Charm|Dancing+Script|Great+Vibes" rel="stylesheet">
-    <script
-  src="http://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amplitudejs/4.0.0/amplitude.js"></script>
   <script src="js/alertify.min.js"></script>
   <script src="js/js.cookie.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/timer.js"></script>
     <script src="js/app.js"></script>
-    <title>Rat ClickE</title>
+    <title>Rat ClickE~Season1,Ep1</title>
 </head>
 
 <body>
-
+        <!--
     <iframe src="music/beethoven.mp3" allow="autoplay" style="display:none" id="iframeAudio">
     </iframe>
     <audio autoplay loop  id="playAudio">
-        <source src="audio/source.mp3">
+        <source src="music/beethoven.mp3">
       </audio>
 <script>
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -34,10 +34,31 @@
      $('#playAudio').remove() //just to make sure that it will not have 2x audio in the background 
   }
 </script>
+-->
 
 
+<div id="big_bois"></div>
+<script>
+        Amplitude.init({
+            songs: [
+                {
+                    "name": "Howard the Alien",
+                    "url": "../ratClicker/music/howard.mp3",
+                    "cover_art_url": "images/howard.png"
+                }
+            ],
+            playlists:{
+                "big_bois":{
+                    songs: [0],
+                    title: "big bois"
+                }
+            }
+            
+        });
+    </script>
 <h1>Rat Clicke</h1>
     <div class="shop">
+        <!--
         <button class="ratBtn" id="thiccRat">One Thic Ratt | ?</button><br>
         <button class="ratBtn" id="hazmatRat">Hazmat Rat | ?</button><br>
         <button class="ratBtn" id="cdcRat">CDC Rat | ?</button><br>
@@ -45,6 +66,7 @@
         <button class="ratBtn" id="obamaRat">President Barat | ?</button><br>
         <button class="ratBtn" id="loanRat">Small loan of a million rats Rat | ?</button><br>
         <button class="ratBtn" id="gambinoRat">Gambino Rat | ?</button><br>
+        -->
     </div>
     <div class="stats">
         <a id="money"></a><br>

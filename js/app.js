@@ -38,15 +38,19 @@ class Rats{
         return data;
     }
     static fromJson(data){
-        var rat = new Rats().cost(data.cost)
-        .costPercent(data.costPercent)
-        .money(data.money)
-        .moneyPercent(data.moneyPercent)
-        .text(data.text);
-        return rat;
+        try{
+            var rat = new Rats().cost(data.cost)
+            .costPercent(data.costPercent)
+            .money(data.money)
+            .moneyPercent(data.moneyPercent)
+            .text(data.text);
+            return rat;
+        }catch(error){
+            return vals[data];
+        }
     }
     getFullText(){
-        return (this.text + this.cost.toFixed(1).toString() + "$");
+        return (this.text + "$ " + this.cost.toLocaleString("en-US",{minimumFractionDigits: 1, maximumFractionDigits: 1}));
     }
 }
 
@@ -57,8 +61,19 @@ vals.hazmatRat = new Rats().cost(10000).costPercent(1.05).money(1).moneyPercent(
 vals.cdcRat = new Rats().cost(1000000).costPercent(1.05).money(1).moneyPercent(1.01).text("CDC Rat | ");
 vals.stripperRat = new Rats().cost(999999999999).costPercent(1.05).money(1).moneyPercent(1.01).text("Stripper Rat | ");
 vals.obamaRat = new Rats().cost(57000).costPercent(1.05).money(1).moneyPercent(1.01).text("President Barat | ");
-vals.loanRat = new Rats().cost(1).costPercent(1.5).money(1).moneyPercent(1.1).text("Small loan of a million rats Rat | ");
+vals.ratrump = new Rats().cost(57000).costPercent(1.05).money(1).moneyPercent(1.01).text("President Ratrump | ");
+vals.loanRat = new Rats().cost(1).costPercent(1.5).money(1).moneyPercent(1.1).text("son of a million rats Rat | ");
 vals.gambinoRat = new Rats().cost(999999999999999).costPercent(1.05).money(1).moneyPercent(1.01).text("Gambino Rat | ");
+
+function loadButtons(){
+    for(var key in vals){
+        if (isNull(vals[key])) continue;
+        var ratName = key;
+        var ratText = vals[key].getFullText();
+        var ratCode = "<button class=\"ratBtn\" id=\""+ratName+"\">"+ratText+"</button><br>";
+        $(".shop").append(ratCode);
+    }
+}
 
 function getJsonData(){
     json = {};
@@ -73,7 +88,7 @@ function getJsonData(){
 function getRatsJson(){
     var ratTotalJson = {};
     for (var key in vals) {
-        if (!vals.hasOwnProperty(key)) continue;
+        if (isNull(vals[key])) continue;
         var ratDataJson = vals[key].toJson();
         ratTotalJson[key] = ratDataJson;
     }
@@ -98,22 +113,33 @@ function loadSaveData(){
 
     var ratData = json.ratData;
     for (var key in vals) {
-        if (!vals.hasOwnProperty(key)) continue;
+        if (isNull(ratData[key])) continue;
+        var text = vals[key].text;
         vals[key] = Rats.fromJson(ratData[key]);
+        vals[key].text = text;
     }
 }
 
 function updateVals(){
     for (var key in vals) {
-        if (!vals.hasOwnProperty(key)) continue;
+        if (isNull(vals[key])) continue;
         var rat = vals[key];
         $("#"+key).text(rat.getFullText());
     }
 }
 
+/*TODO: make achievements class for an array of achievements for saveing/loading
+function checkAchievements(){
+    for(var achievement in achievements){
+        
+    }
+}
+*/
 loadSaveData();
 
+var brokeMessages = ["ur broke sir","no monei","no","frikin heck"];
 $(function(){
+    loadButtons();
     updateVals();
     $("#rat").click(function(){
         money += mpc;
@@ -121,7 +147,7 @@ $(function(){
     $(".ratBtn").click(function(e){
         var clickedRat = vals[e.target.id];
         if(clickedRat.cost > money){
-            alertify.error("ur broke sir");
+            alertify.error(getRand(brokeMessages));
         }else{
             money -= clickedRat.cost;
             mps += clickedRat.money;
@@ -136,13 +162,14 @@ $(function(){
     });
     
     });
-
+var fps = 1000/50;
 function main(){
     $("#money").text("Moneis: " + money.toFixed(1).toString());
     $("#mps").text("Moneies per second: " + mps.toFixed(1).toString());
-    //$("#mpc").text("Money clicke :" + mpc.toFixed(1).toString());
+    $("#mpc").text("Money clicke :" + mpc.toFixed(1).toString());
     $("#rats").text("u got " + ratsTotal.toString() + " rats");
-    money += mps/10;
+    money += mps/fps;
+    checkAchievements();
 }
-new AdjustingInterval(main, 50).start();//10 fps pretty much
+new AdjustingInterval(main, fps).start();//50 fps pretty much
 new AdjustingInterval(saveData, 1000*60*3).start();
