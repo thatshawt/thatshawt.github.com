@@ -1,10 +1,3 @@
 # Rat Clicker
 The best rat clicker money can buy.
-
-## TODO:
-```
--Add animations via canvas
--make buttons look better
--maybe leaderboard?
--add menu
-```
+This is simply the greatest Rat Clicker, extremely modern and well planned.

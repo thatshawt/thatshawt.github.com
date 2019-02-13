@@ -137,9 +137,9 @@ function checkAchievements(){
 */
 loadSaveData();
 
-var brokeMessages = ["ur broke sir","no monei","no","frikin heck"];
+var brokeMessages = ["ur broke sir","no monei","no","frikin heck","stop","bruh moment","E","F","cmon dood", "no u"];
 var timePassed = 0;
-var d = new Date();
+var d;
 var oldTime;
 $(function(){
     $(window).focus(function() {
