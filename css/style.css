@@ -1,7 +1,15 @@
+.topbar {
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    text-align: center;
+  }
+  
 .topright {
     position: absolute;
-    top: 10px;
-    left: 260px;
+    top: 50px;
+    left: 300px;
     font-size: 18px;
   }
 h1{

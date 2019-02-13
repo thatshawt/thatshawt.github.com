@@ -50,7 +50,7 @@ class Rats{
         }
     }
     getFullText(){
-        return (this.text + "$ " + this.cost.toLocaleString("en-US",{minimumFractionDigits: 1, maximumFractionDigits: 1}));
+        return (this.text + "$" + numberWithCommas(this.cost));
     }
 }
 
@@ -138,7 +138,17 @@ function checkAchievements(){
 loadSaveData();
 
 var brokeMessages = ["ur broke sir","no monei","no","frikin heck"];
+var timePassed = 0;
+var d = new Date();
+var oldTime;
 $(function(){
+    $(window).focus(function() {
+        d = new Date();
+        timePassed = d.getTime() - oldTime;
+    }).blur(function() {
+        d = new Date();
+        oldTime = d.getTime();
+    });
     loadButtons();
     updateVals();
     $("#rat").click(function(){
@@ -161,15 +171,28 @@ $(function(){
         saveData();
     });
     
-    });
+});
+
+var topMsg = ["ur rats are worldwide buddy", "rats are taking over jobs",
+ "rat epidemic threatens humanity", "ratS"];
+function changeMessage(){
+    $(".topbar").text(getRand(topMsg));
+}
+
 var fps = 1000/50;
 function main(){
-    $("#money").text("Moneis: " + money.toFixed(1).toString());
-    $("#mps").text("Moneies per second: " + mps.toFixed(1).toString());
-    $("#mpc").text("Money clicke :" + mpc.toFixed(1).toString());
-    $("#rats").text("u got " + ratsTotal.toString() + " rats");
-    money += mps/fps;
+    $("#money").text("Moneis: $" + numberWithCommas(money));
+    $("#mps").text("Moneies per second: $" + numberWithCommas(mps));
+    $("#mpc").text("Money clicke : $" + numberWithCommas(mpc));
+    $("#rats").text("u got " + numberWithCommas(ratsTotal) + " rats");
+    if(timePassed === 0){
+        money += mps/fps;
+    }else{
+        money += (mps*(timePassed/1000))/fps;
+        timePassed = 0;
+    }
     //checkAchievements();
 }
+new AdjustingInterval(changeMessage, 1000*30).start();
 new AdjustingInterval(main, fps).start();//50 fps pretty much
 new AdjustingInterval(saveData, 1000*60*3).start();
