@@ -182,7 +182,7 @@ var topMsg = ["ur rats are worldwide buddy", "rats are taking all our jobs",
 "Cheese - a rats favorite meal","chEesey",
 "rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts"];
 function changeMessage(){
-    $(".topbar").text(getRand(topMsg));
+    $("#topbar").text(getRand(topMsg));
 }
 
 var fps = 1000/50;
