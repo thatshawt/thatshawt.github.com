@@ -173,8 +173,14 @@ $(function(){
     
 });
 
-var topMsg = ["ur rats are worldwide buddy", "rats are taking over jobs",
- "rat epidemic threatens humanity", "ratS"];
+var topMsg = ["ur rats are worldwide buddy", "rats are taking all our jobs",
+ "rat epidemic threatens humanity", "ratS",
+ "somebody once told me","сука крыса","indefinite integral of the cube root of tan x, dx. have fun with that",
+"the rats are in ur house and they stinkyy","i shouldd make roblox rat simulator", "sub to pewdiepie","poor russians dont have internet",
+"cuba needs to be blessed with da rats","Unchi ratto?","Ich bin ein Rat","We are rats. We love rats. Rats love us.",
+"Ratosis - natural phenomenon when rat quantum tunnels through physical realm and transcends all other rats and grants him God-like power",
+"Cheese - a rats favorite meal","chEesey",
+"rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts"];
 function changeMessage(){
     $(".topbar").text(getRand(topMsg));
 }
