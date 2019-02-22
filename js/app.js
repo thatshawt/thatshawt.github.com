@@ -63,7 +63,7 @@ class Rats {
         return this.story;
     }
     getStats() { //total,cost,money
-        return "Money: " + this.money.toString() + " Amount: " + this.total;
+        return "Money: " + numberWithCommas(this.money).toString() + " Amount: " + this.total;
     }
 }
 
@@ -92,7 +92,7 @@ function loadButtons() {
         if (isNull(vals[key])) continue;
         var ratName = key;
         var ratText = vals[key].getFullText();
-        var ratCode = "<button class=\"ratBtn\" id=\"" + ratName + "\">" + ratText + "</button><br>";
+        var ratCode = "<button class=\"btn btn-info ratBtn\" id=\"" + ratName + "\">" + ratText + "</button><br>";
         $(".shop").append(ratCode);
     }
 }
@@ -237,7 +237,7 @@ var fps = new Decimal(1000 / 50);
 
 function main() {
     $("#money").text("Moneis: $" + numberWithCommas(money));
-    $("#mps").text("Moneies per second: $" + numberWithCommas(mps));
+    $("#mps").text("Moneies per second: $" + numberWithCommas(Decimal.add(mps,0)));
     $("#mpc").text("Money clicke : $" + numberWithCommas(mpc));
     $("#rats").text("u got " + numberWithCommas(ratsTotal) + " rats");
     if (timePassed === 0) {

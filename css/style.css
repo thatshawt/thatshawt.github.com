@@ -2,8 +2,8 @@
     overflow: hidden;
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
-    text-align: center;
+    left: 200px;
+    text-align: left;
   }
   
 .topright {
@@ -20,6 +20,7 @@ table.bottom {
   bottom: 0px;
   left: 0px;
   right: 0px;
+  overflow: hidden;
 }
 table, th, td {
   border: 1px solid black;

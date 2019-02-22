@@ -10,6 +10,8 @@
     <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
   crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amplitudejs/4.0.0/amplitude.js"></script>
   <script src="js/alertify.min.js"></script>
   <script src="js/utils.js"></script>
@@ -36,16 +38,16 @@
 </script>
 
 <div class="topbar">
-        <a id="topbar">Rats are cra cra</a></br>
+        <a id="topbar" class="text-white bg-dark">Rats are cra cra</a></br>
         <a id="bugreport" href="https://github.com/thatshawt/ratClicker/issues/new">Submit a bug report</a>        
 </div>
 
 <table class="bottom">
     <tr>
-        <th>name</th><th>story</th><th>stats</th>
+        <th style="width:120px">Name</th><th>Description</th><th style="width:350px">Stats</th>
     </tr>
-    <tr>
-        <th id="ratName"></th><th id="ratStory"></th><th id="ratStats"></th>
+    <tr style="height:40px">
+        <th id="ratName" style="width:120px"></th><th id="ratStory"></th><th id="ratStats" style="width:350px"></th>
     </tr>        
 </table>
 
@@ -59,9 +61,7 @@
     </div>
     <div class="topright" id="rat"><img src="images/Rat.png"></img></div>
     
-    <div class="save-stuff">
-        <button id="saveBtn">Save rat progression</button>
-    </div>
+    <button class="btn btn-primary" id="saveBtn">Save rat progression</button>
 
 </body>
 
