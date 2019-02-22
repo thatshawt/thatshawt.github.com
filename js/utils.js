@@ -1,8 +1,13 @@
 function isNull(obj){
     return (typeof obj === 'undefined') || (obj === null);
 }
+var garbageCommas = function(x){
+    return x.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");//so ugly plox
+};
+
 function numberWithCommas(x) {
-    return x.toLocaleString("en-US",{minimumFractionDigits: 1, maximumFractionDigits: 1});
+    if(x instanceof Decimal)return garbageCommas(x.truncated().toString());
+    return x.toLocaleString("en-US",{minimumFractionDigits: 0, maximumFractionDigits: 0});
 }
 function getRand(myArray){
     return myArray[Math.floor(Math.random() * myArray.length)];

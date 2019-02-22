@@ -11,9 +11,9 @@
   crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amplitudejs/4.0.0/amplitude.js"></script>
   <script src="js/alertify.min.js"></script>
-  <script src="js/js.cookie.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/timer.js"></script>
+  <script src="js/decimal.min.js"></script>
     <script src="js/app.js"></script>
     <title>Rat ClickE~Season1,Ep1</title>
 </head>
@@ -33,8 +33,20 @@
      $('#playAudio').remove() //just to make sure that it will not have 2x audio in the background 
   }
 </script>
-<a class="topbar" id="topbar">Rats are cra cra</a>
-<a class="topbar" id="bugreport"href="https://github.com/thatshawt/ratClicker/issues/new">Submit a bug report</a>
+
+<div class="topbar">
+        <a id="topbar">Rats are cra cra</a></br>
+        <a id="bugreport" href="https://github.com/thatshawt/ratClicker/issues/new">Submit a bug report</a>        
+</div>
+
+<table class="bottom">
+    <tr>
+        <th>name</th><th>story</th><th>stats</th>
+    </tr>
+    <tr>
+        <th id="ratName"></th><th id="ratStory"></th><th id="ratStats"></th>
+    </tr>        
+</table>
 
 <h1>Rat Clicke</h1>
     <div class="shop"></div>
@@ -46,7 +58,6 @@
     </div>
     <div class="topright" id="rat"><img src="images/Rat.png"></img></div>
     
-
     <div class="save-stuff">
         <button id="saveBtn">Save rat progression</button>
     </div>

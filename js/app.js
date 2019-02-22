@@ -1,15 +1,17 @@
-var mps = 0;
-var mpc = 1;
+var mps = new Decimal("0");
+var mpc = new Decimal("1");
 var multiplier = 1;
-var money = 0;
+var money = new Decimal("0");
 var ratsTotal = 0;
 
 var localStorage = window.localStorage;
 
 class Rats{
-    constructor(){}
+    constructor(){
+        this.total = 0;
+    }
     money(a){
-        this.money = a;
+        this.money = new Decimal(a);
         return this;
     }
     moneyPercent(a){
@@ -21,7 +23,7 @@ class Rats{
         return this;
     }
     cost(a){
-        this.cost = a;
+        this.cost = new Decimal(a);
         return this;
     }
     costPercent(a){
@@ -35,15 +37,20 @@ class Rats{
         data.text = this.text;
         data.money = this.money;
         data.moneyPercent = this.moneyPercent;
+        data.total = this.total;
         return data;
+    }
+    story(a){
+        this.story = a;
     }
     static fromJson(data){
         try{
-            var rat = new Rats().cost(data.cost)
+            var rat = new Rats().cost(data.cost.toString())
             .costPercent(data.costPercent)
-            .money(data.money)
+            .money(data.money.toString())
             .moneyPercent(data.moneyPercent)
             .text(data.text);
+            rat.total = data.total;
             return rat;
         }catch(error){
             return vals[data];
@@ -52,18 +59,33 @@ class Rats{
     getFullText(){
         return (this.text + "$" + numberWithCommas(this.cost));
     }
+    getStory(){
+        return this.story;
+    }
+    getStats(){//total,cost,money
+        return "Money: " + this.money.toString() + " Amount: "+this.total;
+    }
 }
 
 var vals = {};
 
-vals.thiccRat = new Rats().cost(10).costPercent(1.05).money(1).moneyPercent(1.01).text("One Thic Ratt | ");
-vals.hazmatRat = new Rats().cost(10000).costPercent(1.05).money(1).moneyPercent(1.01).text("Hazmat Rat | ");
-vals.cdcRat = new Rats().cost(1000000).costPercent(1.05).money(1).moneyPercent(1.01).text("CDC Rat | ");
-vals.stripperRat = new Rats().cost(999999999999).costPercent(1.05).money(1).moneyPercent(1.01).text("Stripper Rat | ");
-vals.obamaRat = new Rats().cost(57000).costPercent(1.05).money(1).moneyPercent(1.01).text("President Barat | ");
-vals.ratrump = new Rats().cost(57000).costPercent(1.05).money(1).moneyPercent(1.01).text("President Ratrump | ");
-vals.loanRat = new Rats().cost(1).costPercent(1.5).money(1).moneyPercent(1.1).text("son of a million rats Rat | ");
-vals.gambinoRat = new Rats().cost(999999999999999).costPercent(1.05).money(1).moneyPercent(1.01).text("Gambino Rat | ");
+vals.thiccRat = new Rats().cost("10").costPercent(1.05).money("1").moneyPercent(1.01).text("One Thic Ratt | ");
+vals.hazmatRat = new Rats().cost("10000").costPercent(1.05).money("5000").moneyPercent(1.01).text("Hazmat Rat | ");
+vals.cdcRat = new Rats().cost("1000000").costPercent(1.05).money("500000").moneyPercent(1.01).text("CDC Rat | ");
+vals.stripperRat = new Rats().cost("999999999999").costPercent(1.05).money("499999999999.5").moneyPercent(1.01).text("Stripper Rat | ");
+vals.obamaRat = new Rats().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Barat | ");
+vals.ratrump = new Rats().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Ratrump | ");
+vals.loanRat = new Rats().cost("1").costPercent(1.5).money("1").moneyPercent(1.1).text("son of a million rats Rat | ");
+vals.gambinoRat = new Rats().cost("999999999999999").costPercent(1.05).money("499999999999999.5").moneyPercent(1.01).text("Gambino Rat | ");
+
+vals.thiccRat.story("He thicc");
+vals.hazmatRat.story("went sicko mode after eating a shart");
+vals.cdcRat.story("ratTs");
+vals.stripperRat.story("makes a living off state of the art machine learning techniques");
+vals.obamaRat.story("pretty cool guy");
+vals.ratrump.story("likes to build massive walls");
+vals.loanRat.story("looks at exponential functions all day, weirdo");
+vals.gambinoRat.story("aw rfik");
 
 function loadButtons(){
     for(var key in vals){
@@ -76,7 +98,7 @@ function loadButtons(){
 }
 
 function getJsonData(){
-    json = {};
+    var json = {};
     json.mps = mps;
     json.mpc = mpc;
     json.multiplier = multiplier;
@@ -96,28 +118,37 @@ function getRatsJson(){
 }
 
 function saveData(){
-    json = getJsonData();
+    var json = getJsonData();
     json.ratData = getRatsJson();
+    console.log(json.ratData);
     localStorage.setItem('data',btoa(JSON.stringify(json)));
 }
 
 function loadSaveData(){
-    json64 = localStorage.getItem('data');
+    var json64 = localStorage.getItem('data');
     if(json64 === null) return;
-    json = JSON.parse(atob(json64));
+    var json = JSON.parse(atob(json64));
     mps = json.mps;
     mpc = json.mpc;
     multiplier = json.multiplier;
     money = json.money;
     ratsTotal = json.ratsTotal;
 
-    var ratData = json.ratData;
+    var ratData = json.ratData;//we will not load corrupted data so yea
     for (var key in vals) {
         if (isNull(ratData[key])) continue;
         var text = vals[key].text;
+        var story = vals[key].story;
         vals[key] = Rats.fromJson(ratData[key]);
         vals[key].text = text;
+        vals[key].story = story;
     }
+}
+
+function updateStats(stats){
+    $("#ratName").text(stats.name);
+    $("#ratStory").text(stats.story);
+    $("#ratStats").text(stats.stats);
 }
 
 function updateVals(){
@@ -152,20 +183,29 @@ $(function(){
     loadButtons();
     updateVals();
     $("#rat").click(function(){
-        money += mpc;
+        money = money.add(mpc);
     });
     $(".ratBtn").click(function(e){
         var clickedRat = vals[e.target.id];
-        if(clickedRat.cost > money){
+        if(clickedRat.cost.gt(money)){
             alertify.error(getRand(brokeMessages));
         }else{
-            money -= clickedRat.cost;
-            mps += clickedRat.money;
-            clickedRat.cost *= clickedRat.costPercent;
-            clickedRat.money *= clickedRat.moneyPercent;
+            money = money.sub(clickedRat.cost);
+            mps = Decimal.add(mps,clickedRat.money);
+            clickedRat.cost = clickedRat.cost.times(clickedRat.costPercent);
+            clickedRat.money = clickedRat.money.times(clickedRat.moneyPercent);
+            clickedRat.total += 1;
             ratsTotal++;
             $(e.target).text(clickedRat.getFullText());
         }
+    });
+    $(".ratBtn").hover(function(e){//hover in
+        var clickedRat = vals[e.target.id];
+        updateStats({name:e.target.id,
+                    story:clickedRat.getStory(),
+                    stats:clickedRat.getStats()});
+    },function(e){//hover out
+        updateStats({name:"",story:"",stats:""});
     });
     $("#saveBtn").click(function(e){
         saveData();
@@ -185,20 +225,20 @@ function changeMessage(){
     $("#topbar").text(getRand(topMsg));
 }
 
-var fps = 1000/50;
+var fps = new Decimal(1000/50);
 function main(){
     $("#money").text("Moneis: $" + numberWithCommas(money));
     $("#mps").text("Moneies per second: $" + numberWithCommas(mps));
     $("#mpc").text("Money clicke : $" + numberWithCommas(mpc));
     $("#rats").text("u got " + numberWithCommas(ratsTotal) + " rats");
     if(timePassed === 0){
-        money += mps/fps;
+        money = Decimal.add(money,(Decimal.div(mps,fps)));
     }else{
-        money += (mps*(timePassed/1000))/fps;
+        money = Decimal.add(money,mps*(timePassed/1000)).div(fps);
         timePassed = 0;
     }
     //checkAchievements();
 }
 new AdjustingInterval(changeMessage, 1000*30).start();
-new AdjustingInterval(main, fps).start();//50 fps pretty much
+new AdjustingInterval(main, fps.toNumber()).start();//50 fps pretty much
 new AdjustingInterval(saveData, 1000*60*3).start();

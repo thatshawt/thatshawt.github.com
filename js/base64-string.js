@@ -282,4 +282,4 @@ var Base64String = {
     return output;
     
   }
-}
+};
