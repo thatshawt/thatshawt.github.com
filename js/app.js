@@ -168,7 +168,7 @@ function checkAchievements(){
 */
 loadSaveData();
 
-var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck", "stop", "bruh moment", "E", "F", "cmon dood", "no u"];
+var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck", "stop", "bruh moment", "E", "F", "cmon dood", "no u", "Dis is not de whey"];
 var timePassed = 0;
 var d;
 var oldTime;
