@@ -226,6 +226,10 @@ function changeMessage() {
     $("#topbar").text(getRand(topMsg));
 }
 
+function changePicture() {
+    $("#randomRat").attr("src","images/Chef_Rat.png");
+}
+
 var fps = new Decimal(1000 / 30);
 
 function main() {
@@ -242,6 +246,7 @@ function main() {
     }
     //checkAchievements();
 }
+new AdjustingInterval(changePicture, 1000 * 25).start();
 new AdjustingInterval(changeMessage, 1000 * 30).start();
 new AdjustingInterval(main, fps.toNumber()).start();
 new AdjustingInterval(saveData, 1000 * 60 * 3).start();
