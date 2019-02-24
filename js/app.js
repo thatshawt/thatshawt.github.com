@@ -249,5 +249,5 @@ function main() {
     //checkAchievements();
 }
 new AdjustingInterval(changeMessage, 1000 * 30).start();
-new AdjustingInterval(main, fps.toNumber()).start(); //50 fps pretty much
+new AdjustingInterval(main, fps.toNumber()).start(); //50 fps pretty much //We only really need 30 fps
 new AdjustingInterval(saveData, 1000 * 60 * 3).start();
