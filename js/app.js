@@ -82,7 +82,7 @@ vals.thiccRat.story("He thicc");
 vals.hazmatRat.story("went sicko mode after eating a shart");
 vals.cdcRat.story("ratTs");
 vals.stripperRat.story("makes a living off state of the art machine learning techniques");
-vals.obamaRat.story("pretty cool guy... Sike");
+vals.obamaRat.story("pretty cool guy");
 vals.ratrump.story("likes to build massive walls");
 vals.loanRat.story("looks at exponential functions all day, weirdo");
 vals.gambinoRat.story("aw rfik");
