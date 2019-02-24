@@ -15,19 +15,26 @@
     <script src="js/timer.js"></script>
     <script src="js/decimal.min.js"></script>
     <script src="js/app.js"></script>
-    <title>Rat ClickE~Season1,Ep2</title>
+    <title>Rat ClickE~Season1,Ep3</title>
   </head>
 
-  <body>
-
+  <body id="bootstrap-overrides" style="background-color:whitesmoke">
     <h1>Rat Clicke</h1>
 
-    <div class="topbar">
-      <a id="topbar" class="text-white bg-dark">Rats are cra cra</a></br>
-      <a id="bugreport" href="https://github.com/thatshawt/ratClicker/issues/new">Submit a bug report</a>        
+    <div class="worldMessage">
+      <a id="topbar" class="text-white bg-dark">WeLcOmE tO rAt ClIcKeR</a>
     </div>
 
-    <div class="shop"></div>
+    <div class="ratPicture" id="rat">
+      <img id="randomRat" src="images/Rat.png" style="height: 250px" style="width: 250px"></img>
+    </div>
+
+    <div class="shop">
+      <button class="btn btn-primary" id="saveBtn">Save rat progression</button>
+    </div>
+
+    <div id="rectangle"></div>
+    
     <div class="stats">
         <a id="money"></a><br>
         <a id="mps"></a><br>
@@ -37,16 +44,16 @@
 
     <table class="description">
       <tr>
-          <th style="width:120px">Name</th><th>Description</th><th style="width:350px">Stats</th>
+          <th style="width:150px">Name</th><th style="width:350px">Stats</th><th style="width:350px">Description</th>
       </tr>
-      <tr style="height:40px">
-          <th id="ratName" style="width:120px"></th><th id="ratStory"></th><th id="ratStats" style="width:350px"></th>
+      <tr style="height: 150px">
+          <th id="ratName" style="width: 25%"></th><th id="ratStats" style="width: 25%"></th><th id="ratStory" style="width: 50%"></th>
       </tr>        
     </table>
 
-    <iframe src="music/beethoven.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
+    <iframe src="music/GoodSong.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
     <audio autoplay loop  id="playAudio">
-      <source src="music/beethoven.mp3">
+      <source src="music/GoodSong.mp3">
     </audio>
 
     <script>
@@ -57,10 +64,5 @@
           $('#playAudio').remove() //just to make sure that it will not have 2x audio in the background 
         }
     </script>
-
-    <div class="topright" id="rat"><img src="images/Rat.png"></img></div>
-      
-    <button class="btn btn-primary" id="saveBtn">Save rat progression</button>
-
   </body>
 </html>
