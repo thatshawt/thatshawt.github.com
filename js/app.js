@@ -6,7 +6,7 @@ var ratsTotal = 0;
 
 var localStorage = window.localStorage;
 
-class Rats {
+class Rat {
     constructor() {
         this.total = 0;
     }
@@ -45,7 +45,7 @@ class Rats {
     }
     static fromJson(data) {
         try {
-            var rat = new Rats().cost(data.cost.toString())
+            var rat = new Rat().cost(data.cost.toString())
                 .costPercent(data.costPercent)
                 .money(data.money.toString())
                 .moneyPercent(data.moneyPercent)
@@ -69,14 +69,14 @@ class Rats {
 
 var vals = {};
 
-vals.thiccRat = new Rats().cost("10").costPercent(1.05).money("1").moneyPercent(1.01).text("One Thic Ratt | ");
-vals.hazmatRat = new Rats().cost("10000").costPercent(1.05).money("5000").moneyPercent(1.01).text("Hazmat Rat | ");
-vals.cdcRat = new Rats().cost("1000000").costPercent(1.05).money("500000").moneyPercent(1.01).text("CDC Rat | ");
-vals.stripperRat = new Rats().cost("999999999999").costPercent(1.05).money("499999999999.5").moneyPercent(1.01).text("Stripper Rat | ");
-vals.obamaRat = new Rats().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Barat | ");
-vals.ratrump = new Rats().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Ratrump | ");
-vals.loanRat = new Rats().cost("1").costPercent(1.5).money("1").moneyPercent(1.1).text("son of a million rats Rat | ");
-vals.gambinoRat = new Rats().cost("999999999999999").costPercent(1.05).money("499999999999999.5").moneyPercent(1.01).text("Gambino Rat | ");
+vals.thiccRat = new Rat().cost("10").costPercent(1.05).money("1").moneyPercent(1.01).text("One Thic Ratt | ");
+vals.hazmatRat = new Rat().cost("10000").costPercent(1.05).money("5000").moneyPercent(1.01).text("Hazmat Rat | ");
+vals.cdcRat = new Rat().cost("1000000").costPercent(1.05).money("500000").moneyPercent(1.01).text("CDC Rat | ");
+vals.stripperRat = new Rat().cost("999999999999").costPercent(1.05).money("499999999999.5").moneyPercent(1.01).text("Stripper Rat | ");
+vals.obamaRat = new Rat().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Barat | ");
+vals.ratrump = new Rat().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Ratrump | ");
+vals.loanRat = new Rat().cost("1").costPercent(1.5).money("1").moneyPercent(1.1).text("son of a million rats Rat | ");
+vals.gambinoRat = new Rat().cost("999999999999999").costPercent(1.05).money("499999999999999.5").moneyPercent(1.01).text("Gambino Rat | ");
 
 vals.thiccRat.story("He thicc");
 vals.hazmatRat.story("went sicko mode after eating a shart");
@@ -126,7 +126,7 @@ function saveData() {
 
 function loadSaveData() {
     var json64 = localStorage.getItem('data');
-    if (json64 === null) return;
+    if (isNull(json64)) return;
     var json = JSON.parse(atob(json64));
     mps = json.mps;
     mpc = json.mpc;
@@ -139,7 +139,7 @@ function loadSaveData() {
         if (isNull(ratData[key])) continue;
         var text = vals[key].text;
         var story = vals[key].story;
-        vals[key] = Rats.fromJson(ratData[key]);
+        vals[key] = Rat.fromJson(ratData[key]);
         vals[key].text = text;
         vals[key].story = story;
     }
@@ -233,7 +233,7 @@ function changeMessage() {
     $("#topbar").text(getRand(topMsg));
 }
 
-var fps = new Decimal(1000 / 50);
+var fps = new Decimal(1000 / 30);
 
 function main() {
     $("#money").text("Moneis: $" + numberWithCommas(money));
@@ -243,11 +243,12 @@ function main() {
     if (timePassed === 0) {
         money = Decimal.add(money, (Decimal.div(mps, fps)));
     } else {
-        money = Decimal.add(money, mps * (timePassed / 1000)).div(fps);
+        console.log("time passed");
+        money = Decimal.add(money, Decimal.div(mps * (timePassed / 1000),fps));
         timePassed = 0;
     }
     //checkAchievements();
 }
 new AdjustingInterval(changeMessage, 1000 * 30).start();
-new AdjustingInterval(main, fps.toNumber()).start(); //50 fps pretty much //We only really need 30 fps
+new AdjustingInterval(main, fps.toNumber()).start();
 new AdjustingInterval(saveData, 1000 * 60 * 3).start();
