@@ -16,7 +16,7 @@ h1 {
 
 .report {
   z-index: 1;
-  position: fixed;
+  position: relative;
   margin-left: 22%;
   margin-top: 25%;
 }
