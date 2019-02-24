@@ -1,8 +1,11 @@
-var mps = new Decimal("0");
-var mpc = new Decimal("1");
-var multiplier = 1;
-var money = new Decimal("0");
-var ratsTotal = 0;
+var data = {};
+
+data.mps = new Decimal("0");
+data.mpc = new Decimal("1");
+data.multiplier = 1;
+data.money = new Decimal("0");
+data.ratsTotal = 0;
+data.rebirthRats = new Decimal("0");
 
 var localStorage = window.localStorage;
 
@@ -53,7 +56,7 @@ class Rat {
             rat.total = data.total;
             return rat;
         } catch (error) {
-            return vals[data];
+            return data.rats[data];
         }
     }
     getFullText() {
@@ -67,51 +70,46 @@ class Rat {
     }
 }
 
-var vals = {};
+data.rats = {};
 
-vals.thiccRat = new Rat().cost("10").costPercent(1.05).money("1").moneyPercent(1.01).text("One Thic Ratt | ");
-vals.hazmatRat = new Rat().cost("10000").costPercent(1.05).money("5000").moneyPercent(1.01).text("Hazmat Rat | ");
-vals.cdcRat = new Rat().cost("1000000").costPercent(1.05).money("500000").moneyPercent(1.01).text("CDC Rat | ");
-vals.stripperRat = new Rat().cost("999999999999").costPercent(1.05).money("499999999999.5").moneyPercent(1.01).text("Stripper Rat | ");
-vals.obamaRat = new Rat().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Barat | ");
-vals.ratrump = new Rat().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Ratrump | ");
-vals.loanRat = new Rat().cost("1").costPercent(1.5).money("1").moneyPercent(1.1).text("son of a million rats Rat | ");
-vals.gambinoRat = new Rat().cost("999999999999999").costPercent(1.05).money("499999999999999.5").moneyPercent(1.01).text("Gambino Rat | ");
+data.rats.thiccRat = new Rat().cost("10").costPercent(1.05).money("1").moneyPercent(1.01).text("One Thic Ratt | ");
+data.rats.hazmatRat = new Rat().cost("10000").costPercent(1.05).money("5000").moneyPercent(1.01).text("Hazmat Rat | ");
+data.rats.cdcRat = new Rat().cost("1000000").costPercent(1.05).money("500000").moneyPercent(1.01).text("CDC Rat | ");
+data.rats.stripperRat = new Rat().cost("999999999999").costPercent(1.05).money("499999999999.5").moneyPercent(1.01).text("Stripper Rat | ");
+data.rats.obamaRat = new Rat().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Barat | ");
+data.rats.ratrump = new Rat().cost("57000").costPercent(1.05).money("28500").moneyPercent(1.01).text("President Ratrump | ");
+data.rats.loanRat = new Rat().cost("1").costPercent(1.5).money("1").moneyPercent(1.1).text("son of a million rats Rat | ");
+data.rats.gambinoRat = new Rat().cost("999999999999999").costPercent(1.05).money("499999999999999.5").moneyPercent(1.01).text("Gambino Rat | ");
 
-vals.thiccRat.story("He thicc");
-vals.hazmatRat.story("went sicko mode after eating a shart");
-vals.cdcRat.story("ratTs");
-vals.stripperRat.story("makes a living off state of the art machine learning techniques");
-vals.obamaRat.story("pretty cool guy");
-vals.ratrump.story("likes to build massive walls");
-vals.loanRat.story("looks at exponential functions all day, weirdo");
-vals.gambinoRat.story("aw rfik");
+data.rats.thiccRat.story("He thicc");
+data.rats.hazmatRat.story("went sicko mode after eating a shart");
+data.rats.cdcRat.story("ratTs");
+data.rats.stripperRat.story("makes a living off state of the art machine learning techniques");
+data.rats.obamaRat.story("pretty cool guy");
+data.rats.ratrump.story("likes to build massive walls");
+data.rats.loanRat.story("looks at exponential functions all day, weirdo");
+data.rats.gambinoRat.story("aw rfik");
 
 function loadButtons() {
-    for (var key in vals) {
-        if (isNull(vals[key])) continue;
+    for (var key in data.rats) {
+        if (isNull(data.rats[key])) continue;
         var ratName = key;
-        var ratText = vals[key].getFullText();
+        var ratText = data.rats[key].getFullText();
         var ratCode = "<button class=\"btn btn-info ratBtn\" id=\"" + ratName + "\">" + ratText + "</button><br>";
         $(".shop").append(ratCode);
     }
 }
 
 function getJsonData() {
-    var json = {};
-    json.mps = mps;
-    json.mpc = mpc;
-    json.multiplier = multiplier;
-    json.money = money;
-    json.ratsTotal = ratsTotal;
-    return json;
+    console.log(data.money);
+    return data;
 }
 
 function getRatsJson() {
     var ratTotalJson = {};
-    for (var key in vals) {
-        if (isNull(vals[key])) continue;
-        var ratDataJson = vals[key].toJson();
+    for (var key in data.rats) {
+        if (isNull(data.rats[key])) continue;
+        var ratDataJson = data.rats[key].toJson();
         ratTotalJson[key] = ratDataJson;
     }
     return ratTotalJson;
@@ -119,8 +117,7 @@ function getRatsJson() {
 
 function saveData() {
     var json = getJsonData();
-    json.ratData = getRatsJson();
-    console.log(json.ratData);
+    console.log(json);
     localStorage.setItem('data', btoa(JSON.stringify(json)));
 }
 
@@ -128,20 +125,23 @@ function loadSaveData() {
     var json64 = localStorage.getItem('data');
     if (isNull(json64)) return;
     var json = JSON.parse(atob(json64));
-    mps = json.mps;
-    mpc = json.mpc;
-    multiplier = json.multiplier;
-    money = json.money;
-    ratsTotal = json.ratsTotal;
+    console.log(json);
+    data.mps = new Decimal(json.mps);
+    data.mpc = new Decimal(json.mpc);
+    data.multiplier = json.multiplier;
+    data.money = new Decimal(json.money);
+    data.ratsTotal = json.ratsTotal;
+    data.rebirthRats = new Decimal(json.rebirthRats);
 
-    var ratData = json.ratData; //we will not load corrupted data so yea
-    for (var key in vals) {
+    var ratData = json.rats;
+    if(isNull(ratData))return;
+    for (var key in data.rats) {
         if (isNull(ratData[key])) continue;
-        var text = vals[key].text;
-        var story = vals[key].story;
-        vals[key] = Rat.fromJson(ratData[key]);
-        vals[key].text = text;
-        vals[key].story = story;
+        var text = data.rats[key].text;
+        var story = data.rats[key].story;
+        data.rats[key] = Rat.fromJson(ratData[key]);
+        data.rats[key].text = text;
+        data.rats[key].story = story;
     }
 }
 
@@ -152,9 +152,9 @@ function updateStats(stats) {
 }
 
 function updateVals() {
-    for (var key in vals) {
-        if (isNull(vals[key])) continue;
-        var rat = vals[key];
+    for (var key in data.rats) {
+        if (isNull(data.rats[key])) continue;
+        var rat = data.rats[key];
         $("#" + key).text(rat.getFullText());
     }
 }
@@ -176,24 +176,24 @@ $(function() {
     loadButtons();
     updateVals();
     $("#rat").click(function() {
-        money = money.add(mpc);
+        data.money = data.money.add(data.mpc);
     });
     $(".ratBtn").click(function(e) {
-        var clickedRat = vals[e.target.id];
-        if (clickedRat.cost.gt(money)) {
+        var clickedRat = data.rats[e.target.id];
+        if (clickedRat.cost.gt(data.money)) {
             alertify.error(getRand(brokeMessages));
         } else {
-            money = money.sub(clickedRat.cost);
-            mps = Decimal.add(mps, clickedRat.money);
+            data.money = data.money.sub(clickedRat.cost);
+            data.mps = Decimal.add(data.mps, clickedRat.money);
             clickedRat.cost = clickedRat.cost.times(clickedRat.costPercent);
             clickedRat.money = clickedRat.money.times(clickedRat.moneyPercent);
             clickedRat.total += 1;
-            ratsTotal++;
+            data.ratsTotal++;
             $(e.target).text(clickedRat.getFullText());
         }
     });
     $(".ratBtn").hover(function(e) { //hover in
-        var clickedRat = vals[e.target.id];
+        var clickedRat = data.rats[e.target.id];
         updateStats({
             name: e.target.id,
             story: clickedRat.getStory(),
@@ -229,15 +229,15 @@ function changeMessage() {
 var fps = new Decimal(1000 / 30);
 
 function main() {
-    $("#money").text("Moneis: $" + numberWithCommas(money));
-    $("#mps").text("Moneies per second: $" + numberWithCommas(Decimal.add(mps,0)));
-    $("#mpc").text("Money clicke : $" + numberWithCommas(mpc));
-    $("#rats").text("u got " + numberWithCommas(ratsTotal) + " rats");
+    $("#money").text("Moneis: $" + numberWithCommas(data.money));
+    $("#mps").text("Moneies per second: $" + numberWithCommas(data.mps));
+    $("#mpc").text("Money clicke : $" + numberWithCommas(data.mpc));
+    $("#rats").text("u got " + numberWithCommas(data.ratsTotal) + " rats");
     if (timePassed === 0) {
-        money = Decimal.add(money, (Decimal.div(mps, fps)));
+        data.money = Decimal.add(data.money, (Decimal.div(data.mps, fps)));
     } else {
         console.log("time passed");
-        money = Decimal.add(money, Decimal.div(mps * (timePassed / 1000),fps));
+        data.money = Decimal.add(data.money, Decimal.div(data.mps * (timePassed / 1000),fps));
         timePassed = 0;
     }
     //checkAchievements();
