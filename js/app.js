@@ -82,7 +82,7 @@ vals.thiccRat.story("He thicc");
 vals.hazmatRat.story("went sicko mode after eating a shart");
 vals.cdcRat.story("ratTs");
 vals.stripperRat.story("makes a living off state of the art machine learning techniques");
-vals.obamaRat.story("pretty cool guy");
+vals.obamaRat.story("pretty cool guy... Sike");
 vals.ratrump.story("likes to build massive walls");
 vals.loanRat.story("looks at exponential functions all day, weirdo");
 vals.gambinoRat.story("aw rfik");
@@ -168,7 +168,7 @@ function checkAchievements(){
 */
 loadSaveData();
 
-var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck", "stop", "bruh moment", "E", "F", "cmon dood", "no u"];
+var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck", "stop", "bruh moment", "E", "F", "cmon dood", "no u", "Dis is not de whey"];
 var timePassed = 0;
 var d;
 var oldTime;
@@ -225,7 +225,7 @@ var topMsg = ["ur rats are worldwide buddy", "rats are taking all our jobs",
     "the rats are in ur house and they stinkyy", "i shouldd make roblox rat simulator", "sub to pewdiepie", "poor russians dont have internet",
     "cuba needs to be blessed with da rats", "Unchi ratto?", "Ich bin ein Rat", "We are rats. We love rats. Rats love us.",
     "Ratosis - natural phenomenon when rat quantum tunnels through physical realm and transcends all other rats and grants him God-like power",
-    "Cheese - a rats favorite meal", "chEesey",
+    "Cheese - a rats favorite meal", "chEesey", "May the rAt be with you...", "T-Gay", 
     "rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts"
 ];
 
@@ -249,5 +249,5 @@ function main() {
     //checkAchievements();
 }
 new AdjustingInterval(changeMessage, 1000 * 30).start();
-new AdjustingInterval(main, fps.toNumber()).start(); //50 fps pretty much
+new AdjustingInterval(main, fps.toNumber()).start(); //50 fps pretty much //We only really need 30 fps
 new AdjustingInterval(saveData, 1000 * 60 * 3).start();
