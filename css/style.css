@@ -18,7 +18,7 @@ h1 {
   z-index: 1;
   position: fixed;
   margin-left: 22%;
-  margin-top: 24.5%;
+  margin-top: 25%;
 }
 
 .stats {
@@ -56,9 +56,9 @@ th, td {
 
 #bootstrap-overrides .shop {
   position: absolute;
-  margin-left: 14.5%;
+  margin-left: 12.5%;
   margin-top: 8%;
-  position: absolute;
+  width: 15.7%;
 }
 
 .ratBtn {
