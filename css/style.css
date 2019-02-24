@@ -41,7 +41,6 @@ table.description {
   margin-top: 10%;
   margin-left: 38%;
   position: absolute;
-
 }
 
 table, th, td {
@@ -56,20 +55,10 @@ th, td {
 }
 
 #bootstrap-overrides .shop {
-  margin-left: 10%;
-  margin-top: 3%;
   position: absolute;
-  padding: 5%;
-}
-
-#rectangle {
-  z-index: -1;
+  margin-left: 14.5%;
+  margin-top: 8%;
   position: absolute;
-  width: 350px;
-  height: 380px;
-  background:brown;
-  margin-left: 15.02%;
-  margin-top: 9.6%;
 }
 
 .ratBtn {
