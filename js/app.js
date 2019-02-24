@@ -159,13 +159,6 @@ function updateVals() {
     }
 }
 
-/*TODO: make achievements class for an array of achievements for saveing/loading
-function checkAchievements(){
-    for(var achievement in achievements){
-        
-    }
-}
-*/
 loadSaveData();
 
 var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck", "stop", "bruh moment", "E", "F", "cmon dood", "no u", "Dis is not de whey"];
