@@ -18,7 +18,7 @@ h1 {
   z-index: 1;
   position: fixed;
   margin-left: 22%;
-  margin-top: 24.5%;
+  margin-top: 25%;
 }
 
 .stats {
@@ -30,7 +30,7 @@ h1 {
 
 .ratPicture {
     position: absolute;
-    margin-left: 38%;
+    margin-left: 38.5%;
     margin-top: 18%;
     font-size: 18px;
 }
@@ -39,9 +39,8 @@ table.description {
   width:25%;
   height: 5%;
   margin-top: 10%;
-  margin-left: 38%;
+  margin-left: 38.5%;
   position: absolute;
-
 }
 
 table, th, td {
@@ -56,20 +55,10 @@ th, td {
 }
 
 #bootstrap-overrides .shop {
-  margin-left: 10%;
-  margin-top: 3%;
   position: absolute;
-  padding: 5%;
-}
-
-#rectangle {
-  z-index: -1;
-  position: absolute;
-  width: 350px;
-  height: 380px;
-  background:brown;
-  margin-left: 15.02%;
-  margin-top: 9.6%;
+  margin-left: 12.5%;
+  margin-top: 8%;
+  width: 15.7%;
 }
 
 .ratBtn {
