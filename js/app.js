@@ -225,7 +225,7 @@ var topMsg = ["ur rats are worldwide buddy", "rats are taking all our jobs",
     "the rats are in ur house and they stinkyy", "i shouldd make roblox rat simulator", "sub to pewdiepie", "poor russians dont have internet",
     "cuba needs to be blessed with da rats", "Unchi ratto?", "Ich bin ein Rat", "We are rats. We love rats. Rats love us.",
     "Ratosis - natural phenomenon when rat quantum tunnels through physical realm and transcends all other rats and grants him God-like power",
-    "Cheese - a rats favorite meal", "chEesey",
+    "Cheese - a rats favorite meal", "chEesey", "May the rAt be with you...", "T-Gay", 
     "rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts"
 ];
 
