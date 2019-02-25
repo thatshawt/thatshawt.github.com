@@ -125,14 +125,23 @@ function loadSaveData() {
     var json64 = localStorage.getItem('data');
     if (isNull(json64)) return;
     var json = JSON.parse(atob(json64));
+    for(var key in json){
+        if(key==="rats")continue;
+        if(isNull(isNull(json[key])))continue;
+        if(typeof(json[key]==="string")){
+            data[key] = new Decimal(json[key]);
+        }else{
+            data[key] = json[key];
+        }
+    }
     console.log(json);
-    data.mps = new Decimal(json.mps);
+    /*data.mps = new Decimal(json.mps);
     data.mpc = new Decimal(json.mpc);
     data.multiplier = json.multiplier;
     data.money = new Decimal(json.money);
     data.ratsTotal = json.ratsTotal;
     data.rebirthRats = new Decimal(json.rebirthRats);
-
+    */
     var ratData = json.rats;
     if(isNull(ratData))return;
     for (var key in data.rats) {
