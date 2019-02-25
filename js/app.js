@@ -145,13 +145,13 @@ function loadSaveData() {
     */
     var ratData = json.rats;
     if(isNull(ratData))return;
-    for (var key in data.rats) {
-        if (isNull(ratData[key])) continue;
-        var text = data.rats[key].text;
-        var story = data.rats[key].story;
-        data.rats[key] = Rat.fromJson(ratData[key]);
-        data.rats[key].text = text;
-        data.rats[key].story = story;
+    for (var key2 in data.rats) {
+        if (isNull(ratData[key2])) continue;
+        var text = data.rats[key2].text;
+        var story = data.rats[key2].story;
+        data.rats[key2] = Rat.fromJson(ratData[key2]);
+        data.rats[key2].text = text;
+        data.rats[key2].story = story;
     }
 }
 
