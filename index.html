@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="icon" href="images/mockey.jpg">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/alertify.min.css">
-    <link rel="stylesheet" href="css/default.css">
-    <link href="https://fonts.googleapis.com/css?family=Charm|Dancing+Script|Great+Vibes" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amplitudejs/4.0.0/amplitude.js"></script>
-    <script src="js/alertify.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/timer.js"></script>
-    <script src="js/decimal.min.js"></script>
-    <script src="js/app.js"></script>
-    <title>Rat ClickE~Season1,Ep3</title>
-  </head>
 
-  <body id="bootstrap-overrides" style="background-color:whitesmoke">
+<head>
+  <link rel="icon" href="images/mockey.jpg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/alertify.min.css">
+  <link rel="stylesheet" href="css/default.css">
+  <link href="https://fonts.googleapis.com/css?family=Charm|Dancing+Script|Great+Vibes" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amplitudejs/4.0.0/amplitude.js"></script>
+  <script src="js/alertify.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/decimal.min.js"></script>
+  <script src="js/app.js"></script>
+  <title>Rat ClickE~Season1,Ep3</title>
+</head>
+
+<body id="bootstrap-overrides" style="background-color:whitesmoke">
+  <div>
     <h1>Rat Clicke</h1>
-
     <div class="worldMessage">
       <a id="topbar" class="text-white bg-dark">WeLcOmE tO rAt ClIcKeR</a>
     </div>
 
     <div class="report">
-    
+
     </div>
 
     <div class="ratPicture" id="rat">
@@ -39,33 +43,43 @@
     </div>
 
     <div class="stats">
-        <a id="money"></a><br>
-        <a id="mps"></a><br>
-        <a id="mpc"></a><br>
-        <a id="rats"></a><br>
+      <a id="money"></a><br>
+      <a id="mps"></a><br>
+      <a id="mpc"></a><br>
+      <a id="rats"></a><br>
     </div>
 
     <table class="description">
       <tr>
-          <th style="width:150px">Name</th><th style="width:350px">Stats</th><th style="width:350px">Description</th>
+        <th style="width:150px">Name</th>
+        <th style="width:350px">Stats</th>
+        <th style="width:350px">Description</th>
       </tr>
       <tr style="height: 150px">
-          <th id="ratName" style="width: 25%"></th><th id="ratStats" style="width: 25%"></th><th id="ratStory" style="width: 50%"></th>
-      </tr>        
+        <th id="ratName" style="width: 25%"></th>
+        <th id="ratStats" style="width: 25%"></th>
+        <th id="ratStory" style="width: 50%"></th>
+      </tr>
     </table>
 
     <iframe src="music/beethoven.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
-    <audio autoplay loop  id="playAudio">
+    <audio autoplay loop id="playAudio">
       <source src="music/beethoven.mp3">
     </audio>
 
     <script>
       var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-        if(!isChrome){
-          $('#iframeAudio').remove()
-        }else{
-          $('#playAudio').remove() //just to make sure that it will not have 2x audio in the background 
-        }
+      if (!isChrome) {
+        $('#iframeAudio').remove()
+      } else {
+        $('#playAudio').remove() //just to make sure that it will not have 2x audio in the background 
+      }
     </script>
-  </body>
+  </div>
+
+  <footer>
+    <audio src="music/MEE.mp3" controls></audio>
+  </footer>
+</body>
+
 </html>
