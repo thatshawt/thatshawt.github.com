@@ -128,7 +128,8 @@ function loadSaveData() {
     for(var key in json){
         if(key==="rats")continue;
         if(isNull(isNull(json[key])))continue;
-        if(typeof(json[key]==="string")){
+        if(typeof json[key]==="string"){
+            console.log(json[key],key);
             data[key] = new Decimal(json[key]);
         }else{
             data[key] = json[key];
