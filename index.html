@@ -24,9 +24,11 @@
 
 <body id="bootstrap-overrides" style="background-color:whitesmoke">
   <div>
-    <h1>Rat Clicke</h1>
-    <div class="worldMessage">
-      <a id="topbar" class="text-white bg-dark">WeLcOmE tO rAt ClIcKeR</a>
+    <div id="top">
+      <h1>Rat Clicke</h1>
+      <div class="worldMessage">
+        <a id="topbar" class="text-white bg-dark">WeLcOmE tO rAt ClIcKeR</a>
+      </div>
     </div>
 
     <div class="report">
@@ -38,29 +40,31 @@
     </div>
 
     <div class="shop">
-      <button class="btn btn-primary" id="saveBtn">Save rat progression</button>
+      <button class="btn btn-primary" id="saveBtn">Save rat progression</button><br>
       <a id="bugreport" href="https://github.com/thatshawt/ratClicker/issues/new" target="_blank">Submit a bug report</a>
     </div>
 
-    <div class="stats">
-      <a id="money"></a><br>
-      <a id="mps"></a><br>
-      <a id="mpc"></a><br>
-      <a id="rats"></a><br>
-    </div>
+    <div id="bigMoneyStats">
+      <div class="stats">
+        <a id="money"></a><br>
+        <a id="mps"></a><br>
+        <a id="mpc"></a><br>
+        <a id="rats"></a><br>
+      </div>
 
-    <table class="description">
-      <tr>
-        <th style="width:150px">Name</th>
-        <th style="width:350px">Stats</th>
-        <th style="width:350px">Description</th>
-      </tr>
-      <tr style="height: 150px">
-        <th id="ratName" style="width: 25%"></th>
-        <th id="ratStats" style="width: 25%"></th>
-        <th id="ratStory" style="width: 50%"></th>
-      </tr>
-    </table>
+      <table class="description">
+        <tr>
+          <th style="width:150px">Name</th>
+          <th style="width:350px">Stats</th>
+          <th style="width:350px">Description</th>
+        </tr>
+        <tr style="height: 150px">
+          <th id="ratName" style="width: 25%"></th>
+          <th id="ratStats" style="width: 25%"></th>
+          <th id="ratStory" style="width: 50%"></th>
+        </tr>
+      </table>
+    </div>
 
     <iframe src="music/beethoven.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
     <audio autoplay loop id="playAudio">
@@ -78,7 +82,7 @@
   </div>
 
   <footer>
-    <audio src="music/MEE.mp3" controls></audio>
+    <audio src="music/MEE.mp3" controls loop></audio>
   </footer>
 </body>
 

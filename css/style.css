@@ -1,39 +1,32 @@
 h1 {
   font-family: 'Great Vibes', cursive;
-  position: absolute;
-  margin-left: 40%;
-  top: 10px;
 }
 
-.worldMessage {
+#top {
   z-index: 1;
   overflow: hidden;
   position: absolute;
-  margin-top: 2%;
+  top: 2%;
   margin-left: 40%;
   text-align: left;
 }
 
 .stats {
   z-index: 1;
-  position: absolute;
-  margin-left: 29%;
-  margin-top: 10%;
+  position: relative;
 }
 
 .ratPicture {
     position: absolute;
-    margin-left: 38.5%;
-    margin-top: 18%;
+    margin-left: 45%;
+    margin-top: 8%;
     font-size: 18px;
 }
 
 table.description {
-  width:25%;
+  width:33%;
   height: 5%;
-  margin-top: 10%;
-  margin-left: 38.5%;
-  position: absolute;
+  position: relative;
 }
 
 table, th, td {
@@ -49,12 +42,31 @@ th, td {
 
 #bootstrap-overrides .shop {
   position: absolute;
-  margin-left: 12.5%;
+  margin-left: 1%;
   margin-top: 8%;
-  width: 15.7%;
+  width: 16%;
 }
 
 .ratBtn {
   width: 100%;
   margin: 1.5%;
+}
+
+#bugreport{
+  position: relative;
+  left: 2%;
+  text-align: center;
+}
+
+#bigMoneyStats{
+  z-index: 1;
+  position: absolute;
+  margin-left: 18%;
+  margin-top: 10%;
+}
+
+footer{
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
