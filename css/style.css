@@ -70,3 +70,10 @@ footer{
   top: 0px;
   left: 0px;
 }
+
+#loginStuff{
+  visibility: hidden;
+  position: fixed;
+  top: 0px;
+  right: 10px;
+}

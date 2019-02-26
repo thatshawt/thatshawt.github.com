@@ -18,6 +18,9 @@
   <script src="js/utils.js"></script>
   <script src="js/timer.js"></script>
   <script src="js/decimal.min.js"></script>
+  <script>
+    alertify.defaults.glossary.title = "Rat Clicker";
+  </script>
   <script src="js/app.js"></script>
   <title>Rat ClickE~Season1,Ep3</title>
 </head>
@@ -29,10 +32,6 @@
       <div class="worldMessage">
         <a id="topbar" class="text-white bg-dark">WeLcOmE tO rAt ClIcKeR</a>
       </div>
-    </div>
-
-    <div class="report">
-
     </div>
 
     <div class="ratPicture" id="rat">
@@ -79,6 +78,15 @@
         $('#playAudio').remove() //just to make sure that it will not have 2x audio in the background 
       }
     </script>
+  </div>
+
+  <div id="loginStuff">
+      <input type="text" placeholder="username"></input><br>
+      <input type="text" placeholder="password"></input><br>
+      <input type="number" placeholder="pin"></input><br>
+      <button class="btn btn-primary">Login</button><button class="btn btn-primary">Signup</button><br>
+      <i id="loginStatus"></i>
+      <a id="loginHelp">Click me for login help!</a>
   </div>
 
   <footer>
