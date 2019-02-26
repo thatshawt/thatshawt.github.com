@@ -6,7 +6,7 @@ h1 {
   z-index: 1;
   overflow: hidden;
   position: absolute;
-  margin-top: 2%;
+  top: 2%;
   margin-left: 40%;
   text-align: left;
 }
@@ -63,4 +63,10 @@ th, td {
   position: absolute;
   margin-left: 18%;
   margin-top: 10%;
+}
+
+footer{
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
