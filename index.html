@@ -3,7 +3,6 @@
 
 <head>
   <link rel="icon" href="images/mockey.jpg">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/alertify.min.css">
   <link rel="stylesheet" href="css/default.css">
   <link href="https://fonts.googleapis.com/css?family=Charm|Dancing+Script|Great+Vibes" rel="stylesheet">
@@ -13,6 +12,7 @@
     crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amplitudejs/4.0.0/amplitude.js"></script>
   <script src="js/alertify.min.js"></script>
   <script src="js/utils.js"></script>
@@ -21,6 +21,7 @@
   <script>
     alertify.defaults.glossary.title = "Rat Clicker";
   </script>
+  <script src="js/lz-string.js"></script>
   <script src="js/app.js"></script>
   <title>Rat ClickE~Season1,Ep3</title>
 </head>
@@ -81,12 +82,13 @@
   </div>
 
   <div id="loginStuff">
-      <input type="text" placeholder="username"></input><br>
-      <input type="text" placeholder="password"></input><br>
-      <input type="number" placeholder="pin"></input><br>
+      <input type="text" id="username" placeholder="username"></input><br>
+      <input type="text" id="pass" placeholder="password"></input><br>
+      <input type="text" id="rePass" placeholder="confirm password"></input><br>
+      <input type="number" id="pin"placeholder="pin"></input><br>
       <button class="btn btn-primary">Login</button><button class="btn btn-primary">Signup</button><br>
-      <i id="loginStatus"></i>
       <a id="loginHelp">Click me for login help!</a>
+      <i id="loginStatus"></i>
   </div>
 
   <footer>

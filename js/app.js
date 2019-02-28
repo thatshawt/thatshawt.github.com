@@ -43,21 +43,18 @@ class Rat {
         data.total = this.total;
         return data;
     }
+    static fromJson(json){
+        var aRat = new Rat();
+        aRat.cost = new Decimal(json.cost);
+        aRat.costPercent = json.costPercent;
+        aRat.text = json.text;
+        aRat.money = new Decimal(json.money);
+        aRat.moneyPercent = json.moneyPercent;
+        aRat.total = json.total;
+        return aRat;
+    }
     story(a) {
         this.story = a;
-    }
-    static fromJson(data) {
-        try {
-            var rat = new Rat().cost(data.cost.toString())
-                .costPercent(data.costPercent)
-                .money(data.money.toString())
-                .moneyPercent(data.moneyPercent)
-                .text(data.text);
-            rat.total = data.total;
-            return rat;
-        } catch (error) {
-            return data.rats[data];
-        }
     }
     getFullText() {
         return (this.text + "$" + numberWithCommas(this.cost));
@@ -66,7 +63,7 @@ class Rat {
         return this.story;
     }
     getStats() { //total,cost,money
-        return "Money: " + numberWithCommas(Decimal.mul(this.money,this.total)).toString() + " Amount: " + this.total;
+        return "Money: " + numberWithCommas(Decimal.mul(this.money, this.total)).toString() + " Amount: " + this.total;
     }
 }
 
@@ -90,6 +87,8 @@ data.rats.ratrump.story("likes to build massive walls");
 data.rats.loanRat.story("looks at exponential functions all day, weirdo");
 data.rats.gambinoRat.story("aw rfik");
 
+console.log(data);
+
 function loadButtons() {
     for (var key in data.rats) {
         if (isNull(data.rats[key])) continue;
@@ -100,31 +99,26 @@ function loadButtons() {
     }
 }
 
-function getJsonData() {
-    console.log(data.money);
-    return data;
-}
-
-function getRatsJson() {
-    var ratTotalJson = {};
-    for (var key in data.rats) {
-        if (isNull(data.rats[key])) continue;
-        var ratDataJson = data.rats[key].toJson();
-        ratTotalJson[key] = ratDataJson;
-    }
-    return ratTotalJson;
-}
-
 function saveData() {
-    var json = getJsonData();
-    console.log(json);
-    localStorage.setItem('data', btoa(JSON.stringify(json)));
+    console.log("saving" + JSON.stringify(data));
+    localStorage.setItem('data', LZString.compress(btoa(JSON.stringify(data))));
 }
 
+var empty = {};
 function loadSaveData() {
     var json64 = localStorage.getItem('data');
-    if (isNull(json64)) return;
-    var json = JSON.parse(atob(json64));
+    if (isNull(json64) || json64 === empty || json64 === "[object Object]") return;
+    var json;
+    try{
+        json = JSON.parse(atob(LZString.decompress(json64)));
+    }catch(rartedError){//we are going to assume that the thing isnt LZString or something idk
+        try{
+            json = JSON.parse(atob((json64)));
+        }catch(megaError){
+            console.log(megaError);
+        }
+    }
+    //data = json;
     for (var key in json) {
         if (key === "rats") continue;
         if (isNull(isNull(json[key]))) continue;
@@ -163,7 +157,9 @@ function updateVals() {
 
 loadSaveData();
 
-var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck", "stop", "bruh moment", "E", "F", "cmon dood", "no u", "Dis is not de whey"];
+var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck",
+    "stop", "bruh moment", "E", "F", "cmon dood", "no me", "frike", "deletus moneyus"
+];
 var timePassed = 0;
 var d;
 var oldTime;
@@ -177,7 +173,7 @@ $(function () {
     });
     loadButtons();
     updateVals();
-    $("#rat").click(function () {
+    $("#randomRat").click(function () {
         data.money = data.money.add(data.mpc);
     });
     $(".ratBtn").click(function (e) {
@@ -218,7 +214,7 @@ var topMsg = ["ur rats are worldwide buddy", "rats are taking all our jobs",
     "rat epidemic threatens humanity", "ratS",
     "somebody once told me", "сука крыса", "indefinite integral of the cube root of tan x, dx. have fun with that",
     "the rats are in ur house and they stinkyy", "i shouldd make roblox rat simulator", "sub to pewdiepie", "poor russians dont have internet",
-    "cuba needs to be blessed with da rats", "Unchi ratto?", "Ich bin ein Rat", "We are rats. We love rats. Rats love us.",
+    "cuba needs to be blessed with da rats", "Unchi ratto?!", "Ich bin ein Rat", "We are rats. We love rats. Rats love us.",
     "Ratosis - natural phenomenon when rat quantum tunnels through physical realm and transcends all other rats and grants him God-like power",
     "Cheese - a rats favorite meal", "chEesey", "May the rAt be with you...", "T-Gay",
     "rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts"
@@ -247,7 +243,7 @@ function main() {
         timePassed = 0;
     }
     $("#loginHelp").click(function () {
-        alertify.confirm("When you make a new account(signup) you have to supply everything, username, password, and pin.\nBut when you are just logging in all you need is your username and password, no pin needed.");
+        alertify.confirm("When you make a new account(signup) you have to supply everything, username, password, and pin. But when you are just logging in all you need is your username and password, no pin needed.");
     });
 }
 new AdjustingInterval(changePicture, 1000 * 25).start();
