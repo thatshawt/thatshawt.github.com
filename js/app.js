@@ -181,7 +181,8 @@ $(function () {
         if (clickedRat.cost.gt(data.money)) {
             alertify.error(getRand(brokeMessages));
         } else {
-            data.money = data.money.sub(clickedRat.cost);
+            data.money = Decimal.sub(data.money, clickedRat.cost);
+            //data.money = data.money.sub(clickedRat.cost);
             data.mps = Decimal.add(data.mps, clickedRat.money);
             clickedRat.cost = clickedRat.cost.times(clickedRat.costPercent);
             clickedRat.money = clickedRat.money.times(clickedRat.moneyPercent);
