@@ -129,6 +129,7 @@ function loadSaveData() {
             data[key] = json[key];
         }
     }
+    console.log(json, data);
     var ratData = json.rats;
     if (isNull(ratData)) return;
     for (var key2 in data.rats) {
