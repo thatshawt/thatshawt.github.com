@@ -244,14 +244,12 @@ $(function () {
         if (dRatCost.times(buyCount).gt(data.money)) {
             alertify.error(getRand(brokeMessages));
         } else {
-
             data.money = dMoney.sub(dRatCost.times(buyCount));
             data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount));
             clickedRat.cost = dRatCost.times(Decimal.pow(clickedRat.costPercent,buyCount));
             clickedRat.income = dRatIncome.times(Decimal.pow(clickedRat.moneyPercent,buyCount));
             clickedRat.total = Decimal.add(clickedRat.total, buyCount);
             data.ratsTotal = Decimal.add(data.ratsTotal, buyCount);
-
         }
     });
     $(".ratBtn").hover(function (e) { //hover in
@@ -387,6 +385,7 @@ function main() {
         timePassed = 0;
     }
 }
+
 new AdjustingInterval(changePicture, 1000 * 25).start();
 new AdjustingInterval(changeMessage, 1000 * 30).start();
 new AdjustingInterval(main, fps).start();
