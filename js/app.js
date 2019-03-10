@@ -58,7 +58,6 @@ class Rat {
         this.story = a;
     }
     getFullText() {
-        console.log(getBuyCount());
         return (this.text + "$" + numberWithCommas(Decimal.mul(this.cost,getBuyCount())));
     }
     getStory() {
