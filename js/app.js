@@ -131,8 +131,10 @@ function saveData() {
         alertify.error("login/signup before saving");
         return;
     }
+    $("#saveBtn").text("saving...");
     userSave(loginInfo, function(data){
         alertify.success("saved!");
+        $("#saveBtn").text("Save rat progress");
     },function(){
         alertify.error("error!");
     });
@@ -315,7 +317,7 @@ $(function () {
                 pass: pass,
                 pin: pin
             }, function (data) {
-                setLogin(user,login);
+                login(username, pass);
                 alertify.error(data);
             }, consoleLog);
         }
