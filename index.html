@@ -6,8 +6,10 @@
   <link rel="stylesheet" href="css/alertify.min.css">
   <link rel="stylesheet" href="css/default.css">
   <link href="https://fonts.googleapis.com/css?family=Charm|Dancing+Script|Great+Vibes" rel="stylesheet">
-  <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-    crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
@@ -22,16 +24,18 @@
     alertify.defaults.glossary.title = "Rat Clicker";
   </script>
   <script src="js/lz-string.js"></script>
+  <script src="js/sjcl.js"></script>
+  <script src="js/ratClicker.js"></script>
   <script src="js/app.js"></script>
-  <title>Rat ClickE~Season1,Ep3</title>
+  <title>Rat ClickE~Season1,Ep4</title>
 </head>
 
 <body id="bootstrap-overrides" style="background-color:whitesmoke">
   <div>
     <div id="top">
-      <h1>Rat Clicke</h1>
+      <h1 style="margin-right:10px">Rat Clicke</h1>
       <div class="worldMessage">
-        <a id="topbar" class="text-white bg-dark">WeLcOmE tO rAt ClIcKeR</a>
+        <a id="topbar" class="text-white bg-dark">Welcome to the dark web</a>
       </div>
     </div>
 
@@ -83,16 +87,22 @@
 
   <div id="loginStuff">
       <input type="text" id="username" placeholder="username"></input><br>
-      <input type="text" id="pass" placeholder="password"></input><br>
-      <input type="text" id="rePass" placeholder="confirm password"></input><br>
+      <input type="password" id="pass" placeholder="password"></input><br>
+      <input type="password" id="rePass" placeholder="confirm password"></input><br>
       <input type="number" id="pin"placeholder="pin"></input><br>
-      <button class="btn btn-primary">Login</button><button class="btn btn-primary">Signup</button><br>
-      <a id="loginHelp">Click me for login help!</a>
+      <button class="btn btn-primary" id="submitLogin">Login</button><button class="btn btn-primary" id="submitSignup">Signup</button><br>
+      <a id="loginHelp">Click me for login help!</a><br>
       <i id="loginStatus"></i>
+  </div>
+
+  <div id="logoutDiv" style="visibility: hidden;">
+    <i id="loggedIn">logged in as ur mooooomm</i>
+    <button class="btn btn-primary" id="logout">Logout</button>
   </div>
 
   <footer>
     <audio src="music/MEE.mp3" controls loop></audio>
+    <b>DISCLAIMER: Do not use your real password because the saving mechanism is insecure</b>
   </footer>
 </body>
 

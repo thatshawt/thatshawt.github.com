@@ -24,10 +24,9 @@ function AdjustingInterval(workFunc, interval, errorFunc) {
     function step() {
         var drift = Date.now() - expected;
         if (drift > that.interval) {
-            // You could have some default stuff here too...
             if (errorFunc) errorFunc();
         }
-        workFunc();
+        workFunc(drift);
         expected += that.interval;
         timeout = setTimeout(step, Math.max(0, that.interval-drift));
     }

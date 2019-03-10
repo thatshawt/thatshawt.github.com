@@ -69,8 +69,8 @@ th, td {
 }
 
 footer{
-  position: absolute;
-  top: 0px;
+  position: fixed;
+  bottom: 0px;
   left: 0px;
 }
 
@@ -79,4 +79,10 @@ footer{
   position: fixed;
   top: 0px;
   right: 10px;
+}
+
+#logoutDiv{
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
 }
