@@ -9,7 +9,7 @@ h1 {
   overflow: hidden;
   position: absolute;
   top: 2%;
-  margin-left: 30%;
+  margin-left: 20%;
   text-align: left;
 }
 
@@ -46,7 +46,7 @@ th, td {
 #bootstrap-overrides .shop {
   position: absolute;
   margin-left: 1%;
-  margin-top: 8%;
+  margin-top: 1%;
   width: 16%;
 }
 
@@ -69,8 +69,8 @@ th, td {
 }
 
 footer{
-  position: absolute;
-  top: 0px;
+  position: fixed;
+  bottom: 0px;
   left: 0px;
 }
 
@@ -80,3 +80,14 @@ footer{
   top: 0px;
   right: 10px;
 }
+
+#logoutDiv{
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+}
+
+#ratBuyerCount{
+  width:80px;
+}
+
