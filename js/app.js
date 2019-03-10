@@ -58,7 +58,8 @@ class Rat {
         this.story = a;
     }
     getFullText() {
-        return (this.text + "$" + numberWithCommas(this.cost));
+        console.log(getBuyCount());
+        return (this.text + "$" + numberWithCommas(Decimal.mul(this.cost,getBuyCount())));
     }
     getStory() {
         return this.story;
@@ -87,6 +88,15 @@ data.rats.obamaRat.story("pretty cool guy");
 data.rats.ratrump.story("likes to build massive walls");
 data.rats.loanRat.story("looks at exponential functions all day, weirdo");
 data.rats.gambinoRat.story("aw rfik");
+
+function getBuyCount(){
+    var a = $("#ratBuyerCount").val();
+    if(isNull(a) || isEmpty(a) || a<1){
+        return 1;
+    }else{
+        return a;
+    }
+}
 
 function setLogin(user, pass){
     localStorage.setItem("data",JSON.stringify({user:user,pass:pass}));
@@ -189,7 +199,6 @@ function login(user, pass, status){
         user: user,
         pass: pass
     }, function (data) {
-        console.log(data);
         if(error(data)){
             alertify.error(data);
             return;
@@ -227,17 +236,17 @@ $(function () {
         var dRatIncome = new Decimal(clickedRat.income);
         var dRatCost = new Decimal(clickedRat.cost);
         var dMoney = new Decimal(data.money);
+        var buyCount = getBuyCount();
 
-        if (dRatCost.gt(data.money)) {
+        if (dRatCost.times(buyCount).gt(data.money)) {
             alertify.error(getRand(brokeMessages));
         } else {
-            data.money = dMoney.sub(clickedRat.cost);
-            data.mps = Decimal.add(data.mps, clickedRat.income);
-            clickedRat.cost = dRatCost.times(clickedRat.costPercent);
-            clickedRat.income = dRatIncome.times(clickedRat.moneyPercent);
-            clickedRat.total += 1;
-            data.ratsTotal++;
-            $(e.target).text(clickedRat.getFullText());
+            data.money = dMoney.sub(dRatCost.times(buyCount));
+            data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount));
+            clickedRat.cost = dRatCost.times(Decimal.pow(clickedRat.costPercent,buyCount));
+            clickedRat.income = dRatIncome.times(Decimal.pow(clickedRat.moneyPercent,buyCount));
+            clickedRat.total = Decimal.add(clickedRat.total, buyCount);
+            data.ratsTotal = Decimal.add(data.ratsTotal, buyCount);
         }
     });
     $(".ratBtn").hover(function (e) { //hover in
@@ -341,7 +350,7 @@ function changePicture() {
 
 if(!isNull(getLogin())){
     var loginInfo = getLogin();
-    login(loginInfo.user, loginInfo.pass, $("#loginStatus"));
+    login(loginInfo.user, loginInfo.pass);
 }
 
 var fps = 1000 / 30;
@@ -357,6 +366,10 @@ function main() {
     }else{
         $("#logoutDiv").attr("style","visibility: hidden;");
     }
+    $(".ratBtn").each(function(){
+        var clickedRat = data.rats[this.id];
+        $(this).text(clickedRat.getFullText());
+    });
     $("#money").text("Moneis: $" + numberWithCommas(data.money));
     $("#mps").text("Moneies per second: $" + numberWithCommas(data.mps));
     $("#mpc").text("Money clicke : $" + numberWithCommas(data.mpc));
