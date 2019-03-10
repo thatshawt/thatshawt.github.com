@@ -168,6 +168,7 @@ function loadSaveData(json64) {
         if (isNull(isNull(json[key]))) continue;
         data[key] = json[key];
     }
+    console.log(json, data);
     var ratData = json.rats;
     if (isNull(ratData)) return;
     for (var key2 in data.rats) {
@@ -243,12 +244,14 @@ $(function () {
         if (dRatCost.times(buyCount).gt(data.money)) {
             alertify.error(getRand(brokeMessages));
         } else {
+
             data.money = dMoney.sub(dRatCost.times(buyCount));
             data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount));
             clickedRat.cost = dRatCost.times(Decimal.pow(clickedRat.costPercent,buyCount));
             clickedRat.income = dRatIncome.times(Decimal.pow(clickedRat.moneyPercent,buyCount));
             clickedRat.total = Decimal.add(clickedRat.total, buyCount);
             data.ratsTotal = Decimal.add(data.ratsTotal, buyCount);
+
         }
     });
     $(".ratBtn").hover(function (e) { //hover in

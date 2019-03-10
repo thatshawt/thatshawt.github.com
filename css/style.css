@@ -75,7 +75,7 @@ footer{
 }
 
 #loginStuff{
-  visibility: visible;
+  visibility: hidden;
   position: fixed;
   top: 0px;
   right: 10px;
@@ -90,3 +90,4 @@ footer{
 #ratBuyerCount{
   width:80px;
 }
+
