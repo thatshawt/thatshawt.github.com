@@ -111,6 +111,10 @@ function loadButtons() {
 }
 
 function saveData() {
+    if(loading){
+        alertify.error("cannot save while loading");
+        return;
+    }
     var loginInfo = getLogin();
     loginInfo.data = btoa(JSON.stringify(data));
     if(isNull(loginInfo)){
@@ -187,15 +191,16 @@ function login(user, pass, status){
     }, function (data) {
         console.log(data);
         if(error(data)){
-            status.text(data);
+            alertify.error(data);
             return;
         }
         loadSaveData(data);
         setLogin(user, pass);
         alertify.success("loaded!");
     }, function(){
-        status.text("baddy no no");
+        alertify.error("user probably doesnt exist");
     });
+    $("#pass").text("yuhyuhyuh");
 }
 
 var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck",
@@ -265,39 +270,35 @@ $(function () {
     });
 
     $("#submitLogin").click(function () {
-        var status = $("#loginStatus");
-
         var pass = $("#pass").val();
         var user = $("#username").val();
 
         if (isEmpty(user)) {
             console.log(user);
-            status.text("username is empty");
+            alertify.error("username is empty");
         } else if (isEmpty(pass)) {
-            status.text("password is empty");
+            alertify.error("password is empty");
         } else {
-            login(user,pass,status);
+            login(user,pass);
         }
     });
 
     $("#submitSignup").click(function () {
-        var status = $("#loginStatus");
-
         var pass = $("#pass").val();
         var rePass = $("#rePass").val();
         var username = $("#username").val();
         var pin = $("#pin").val();
 
         if (isEmpty(pass)) {
-            status.text("password is empty");
+            alertify.error("password is empty");
         } else if (isEmpty(rePass)) {
-            status.text("confirm the password");
+            alertify.error("confirm the password");
         } else if (isEmpty(username)) {
-            status.text("username is empty");
+            alertify.error("username is empty");
         } else if (isEmpty(pin)) {
-            status.text("pin is empty");
+            alertify.error("pin is empty");
         } else if (rePass !== pass) {
-            status.text("passwords dont match");
+            alertify.error("passwords dont match");
         } else {
             console.log(pass, pin);
             userSignup({
@@ -306,7 +307,7 @@ $(function () {
                 pin: pin
             }, function (data) {
                 setLogin(user,login);
-                status.text(data);
+                alertify.error(data);
             }, consoleLog);
         }
     });
@@ -324,7 +325,8 @@ var topMsg = ["ur rats are worldwide buddy", "rats are taking all our jobs",
     "cuba needs to be blessed with da rats", "Unchi ratto?!", "Ich bin ein Rat", "We are rats. We love rats. Rats love us.",
     "Ratosis - natural phenomenon when rat quantum tunnels through physical realm and transcends all other rats and grants him God-like power",
     "Cheese - a rats favorite meal", "chEesey", "May the rAt be with you...", "T-Gay",
-    "rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts"
+    "rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts",
+    "make sewers great again","rat care"
 ];
 
 function changeMessage() {
@@ -337,7 +339,6 @@ function changePicture() {
     $("#randomRat").attr("src", "images/"+getRand(ratImgs));
 }
 
-
 if(!isNull(getLogin())){
     var loginInfo = getLogin();
     login(loginInfo.user, loginInfo.pass, $("#loginStatus"));
@@ -345,7 +346,10 @@ if(!isNull(getLogin())){
 
 var fps = 1000 / 30;
 function main() {
-    if (loading) return;
+    if (loading){
+        $("#money").text("loading...");
+        return;
+    }
     var loginInfo = getLogin();
     if(!isNull(loginInfo)){
         $("#loggedIn").text("logged in as " + loginInfo.user);
