@@ -23,11 +23,6 @@ function backgroundTask(task){
 function consoleLog(data){
     console.log(data);
 }
-var salt = "a9wnd9ainhwd9ahwd98ahwd98ahwd89awd9ahwdu23d9oiwuebvfg893uo";
-var pass = "as8dihjwa09idhaw98dha9w8pdha9wdhaw9dih";
-function encrypt(data){
-    return sjcl.encrypt(pass,salt+data);
-}
-function decrypt(data){
-    return sjcl.decrypt(pass,data);
-}
+function copy(src) {
+    return Object.assign({}, src);
+  }

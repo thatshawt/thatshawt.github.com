@@ -18,8 +18,8 @@ class Rat {
         this.income = a;
         return this;
     }
-    moneyPercent(a) {
-        this.moneyPercent = a;
+    moneyIncrease(a) {
+        this.moneyIncrease = a;
         return this;
     }
     text(a) {
@@ -30,27 +30,27 @@ class Rat {
         this.cost = a;
         return this;
     }
-    costPercent(a) {
-        this.costPercent = a;
+    costIncrease(a) {
+        this.costIncrease = a;
         return this;
     }
     toJson() {
         var stuff = {};
         stuff.cost = this.cost;
-        stuff.costPercent = this.costPercent;
+        stuff.costPercent = this.costIncrease;
         stuff.text = this.text;
         stuff.income = this.income;
-        stuff.moneyPercent = this.moneyPercent;
+        stuff.moneyPercent = this.moneyIncrease;
         stuff.total = this.total;
         return stuff;
     }
     static fromJson(json) {
         var aRat = new Rat();
         aRat.cost = json.cost;
-        aRat.costPercent = json.costPercent;
+        aRat.costIncrease = json.costPercent;
         aRat.text = json.text;
         aRat.income = json.income;
-        aRat.moneyPercent = json.moneyPercent;
+        aRat.moneyIncrease = json.moneyPercent;
         aRat.total = json.total;
         return aRat;
     }
@@ -58,7 +58,7 @@ class Rat {
         this.story = a;
     }
     getFullText() {
-        return (this.text + "$" + numberWithCommas(Decimal.mul(this.cost,getBuyCount())));
+        return (this.text + "$" + numberWithCommas(Decimal.mul(this.cost, getBuyCount())));
     }
     getStory() {
         return this.story;
@@ -70,14 +70,14 @@ class Rat {
 
 data.rats = {};
 
-data.rats.thiccRat = new Rat().cost("10").costPercent(1.05).income("1").moneyPercent(1.01).text("One Thic Ratt | ");
-data.rats.hazmatRat = new Rat().cost("10000").costPercent(1.05).income("5000").moneyPercent(1.01).text("Hazmat Rat | ");
-data.rats.cdcRat = new Rat().cost("1000000").costPercent(1.05).income("500000").moneyPercent(1.01).text("CDC Rat | ");
-data.rats.stripperRat = new Rat().cost("999999999999").costPercent(1.05).income("499999999999.5").moneyPercent(1.01).text("Stripper Rat | ");
-data.rats.obamaRat = new Rat().cost("57000").costPercent(1.05).income("28500").moneyPercent(1.01).text("President Barat | ");
-data.rats.ratrump = new Rat().cost("57000").costPercent(1.05).income("28500").moneyPercent(1.01).text("President Ratrump | ");
-data.rats.loanRat = new Rat().cost("1").costPercent(1.5).income("1").moneyPercent(1.1).text("son of a million rats Rat | ");
-data.rats.gambinoRat = new Rat().cost("999999999999999").costPercent(1.05).income("499999999999999.5").moneyPercent(1.01).text("Gambino Rat | ");
+data.rats.thiccRat = new Rat().cost("10").costIncrease(10).income("1").moneyIncrease("1").text("One Thic Ratt | ");
+data.rats.hazmatRat = new Rat().cost("10000").costIncrease(10000).income("5000").moneyIncrease("1000").text("Hazmat Rat | ");
+data.rats.cdcRat = new Rat().cost("1000000").costIncrease(1000000).income("500000").moneyIncrease("100000").text("CDC Rat | ");
+data.rats.stripperRat = new Rat().cost("999999999999").costIncrease(999999999999).income("499999999999.5").moneyIncrease("99999999999.9").text("Stripper Rat | ");
+data.rats.obamaRat = new Rat().cost("57000").costIncrease(57000).income("28500").moneyIncrease("5700").text("President Barat | ");
+data.rats.ratrump = new Rat().cost("57000").costIncrease(57000).income("28500").moneyIncrease("5700").text("President Ratrump | ");
+data.rats.loanRat = new Rat().cost("1").costIncrease(1).income("1").moneyIncrease("0.10").text("son of a million rats Rat | ");
+data.rats.gambinoRat = new Rat().cost("999999999999999").costIncrease(999999999999999).income("499999999999999.5").moneyIncrease("99999999999999.9").text("Gambino Rat | ");
 
 data.rats.thiccRat.story("He thicc");
 data.rats.hazmatRat.story("went sicko mode after eating a shart");
@@ -88,22 +88,27 @@ data.rats.ratrump.story("likes to build massive walls");
 data.rats.loanRat.story("looks at exponential functions all day, weirdo");
 data.rats.gambinoRat.story("aw rfik");
 
-function getBuyCount(){
+var dataCopy = copy(data);
+
+function getBuyCount() {
     var a = $("#ratBuyerCount").val();
-    if(isNull(a) || isEmpty(a) || a<1){
+    if (isNull(a) || isEmpty(a) || a < 1) {
         return 1;
-    }else{
+    } else {
         return a;
     }
 }
 
-function setLogin(user, pass){
-    localStorage.setItem("data",JSON.stringify({user:user,pass:pass}));
+function setLogin(user, pass) {
+    localStorage.setItem("data", JSON.stringify({
+        user: user,
+        pass: pass
+    }));
 }
 
-function getLogin(){
+function getLogin() {
     var a = JSON.parse(localStorage.getItem("data"));
-    if(isNull(a) || isNull(a.user)){
+    if (isNull(a) || isNull(a.user)) {
         return null;
     }
     return JSON.parse(localStorage.getItem("data"));
@@ -120,21 +125,21 @@ function loadButtons() {
 }
 
 function saveData() {
-    if(loading){
+    if (loading) {
         alertify.error("cannot save while loading");
         return;
     }
     var loginInfo = getLogin();
     loginInfo.data = btoa(JSON.stringify(data));
-    if(isNull(loginInfo)){
+    if (isNull(loginInfo)) {
         alertify.error("login/signup before saving");
         return;
     }
     $("#saveBtn").text("saving...");
-    userSave(loginInfo, function(data){
+    userSave(loginInfo, function (data) {
         alertify.success("saved!");
         $("#saveBtn").text("Save rat progress");
-    },function(){
+    }, function () {
         alertify.error("error!");
     });
     //localStorage.setItem('data', LZString.compress(btoa(JSON.stringify(data))) );
@@ -149,22 +154,19 @@ function loadSaveData(json64) {
         return;
     }
     var json;
+    //we are going to assume that the thing isnt LZString or something idk
     try {
-        json = JSON.parse(atob(json64));
-    } catch (rartedError) { //we are going to assume that the thing isnt LZString or something idk
-        try {
-            json = JSON.parse(atob((json64)));
-        } catch (megaError) {
-            console.log(megaError);
-            loading = false;
-            return;
-        }
+        json = JSON.parse(atob((json64)));
+    } catch (megaError) {
+        console.log(megaError);
+        loading = false;
+        return;
     }
     console.log(json);
 
     for (var key in json) {
         if (key === "rats") continue;
-        if (isNull(isNull(json[key]))) continue;
+        if (isNull(json[key])) continue;
         data[key] = json[key];
     }
     console.log(json, data);
@@ -173,8 +175,8 @@ function loadSaveData(json64) {
     for (var key2 in data.rats) {
         if (isNull(ratData[key2])) continue;
         if (isNull(ratData[key2].income)) ratData[key2].income = "0";
-        var text = data.rats[key2].text;
-        var story = data.rats[key2].story;
+        var text = dataCopy.rats[key2].text;
+        var story = dataCopy.rats[key2].story;
         data.rats[key2] = Rat.fromJson(ratData[key2]);
         data.rats[key2].text = text;
         data.rats[key2].story = story;
@@ -189,26 +191,26 @@ function updateStats(stats) {
 }
 
 function updateVals() {
-    for (var key in data.rats) {
-        if (isNull(data.rats[key])) continue;
-        var rat = data.rats[key];
+    for (var key in dataCopy.rats) {
+        if (isNull(dataCopy.rats[key])) continue;
+        var rat = dataCopy.rats[key];
         $("#" + key).text(rat.getFullText());
     }
 }
 
-function login(user, pass, status){
+function login(user, pass, status) {
     userLoad({
         user: user,
         pass: pass
     }, function (data) {
-        if(error(data)){
+        if (error(data)) {
             alertify.error(data);
             return;
         }
         loadSaveData(data);
         setLogin(user, pass);
         alertify.success("loaded!");
-    }, function(){
+    }, function () {
         alertify.error("user probably doesnt exist");
     });
     $("#pass").text("yuhyuhyuh");
@@ -239,14 +241,17 @@ $(function () {
         var dRatCost = new Decimal(clickedRat.cost);
         var dMoney = new Decimal(data.money);
         var buyCount = getBuyCount();
+        if (buyCount < 1) buyCount = 1;
+
+        console.log(clickedRat.cost, buyCount);
 
         if (dRatCost.times(buyCount).gt(data.money)) {
             alertify.error(getRand(brokeMessages));
         } else {
-            data.money = dMoney.sub(dRatCost.times(buyCount));
-            data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount));
-            clickedRat.cost = dRatCost.times(Decimal.pow(clickedRat.costPercent,buyCount));
-            clickedRat.income = dRatIncome.times(Decimal.pow(clickedRat.moneyPercent,buyCount));
+            data.money = dMoney.sub(dRatCost.times(buyCount)); //subtract your money by rat cost
+            data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount)); //increase your mps by rat income
+            clickedRat.cost = dRatCost.add(Decimal.mul(clickedRat.costIncrease, buyCount)); //make the rats cost
+            clickedRat.income = dRatIncome.times(Decimal.mul(clickedRat.moneyIncrease, buyCount));
             clickedRat.total = Decimal.add(clickedRat.total, buyCount);
             data.ratsTotal = Decimal.add(data.ratsTotal, buyCount);
         }
@@ -268,9 +273,9 @@ $(function () {
     var lastSave = 0;
     $("#saveBtn").click(function () {
         var now = Date.now();
-        if(((now - lastSave)/1000)>5){//5 second delay
+        if (((now - lastSave) / 1000) > 5) { //5 second delay
             saveData();
-        }else{
+        } else {
             alertify.error("a little too fast mah boi");
         }
         lastSave = Date.now();
@@ -290,7 +295,7 @@ $(function () {
         } else if (isEmpty(pass)) {
             alertify.error("password is empty");
         } else {
-            login(user,pass);
+            login(user, pass);
         }
     });
 
@@ -318,12 +323,12 @@ $(function () {
                 pin: pin
             }, function (data) {
                 login(username, pass);
-                alertify.error(data);
+                alertify.success(data);
             }, consoleLog);
         }
     });
 
-    $("#logout").click(function(){
+    $("#logout").click(function () {
         setLogin();
     });
 
@@ -337,38 +342,41 @@ var topMsg = ["ur rats are worldwide buddy", "rats are taking all our jobs",
     "Ratosis - natural phenomenon when rat quantum tunnels through physical realm and transcends all other rats and grants him God-like power",
     "Cheese - a rats favorite meal", "chEesey", "May the rAt be with you...", "T-Gay",
     "rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts",
-    "make sewers great again","rat care"
+    "make sewers great again", "rat care"
 ];
 
 function changeMessage() {
     $("#topbar").text(getRand(topMsg));
 }
 
-var ratImgs = ["Chef_Rat.png","howard.png","mockey.jpg","MOCKEYRAT.jpg","Party_Rat.png","Rat.png",
-"ratTrump.jpg","Yeehaw_Rat.png"];
+var ratImgs = ["Chef_Rat.png", "howard.png", "mockey.jpg", "MOCKEYRAT.jpg", "Party_Rat.png", "Rat.png",
+    "ratTrump.jpg", "Yeehaw_Rat.png"
+];
+
 function changePicture() {
-    $("#randomRat").attr("src", "images/"+getRand(ratImgs));
+    $("#randomRat").attr("src", "images/" + getRand(ratImgs));
 }
 
-if(!isNull(getLogin())){
+if (!isNull(getLogin())) {
     var loginInfo = getLogin();
     login(loginInfo.user, loginInfo.pass);
 }
 
 var fps = 1000 / 30;
+
 function main() {
-    if (loading){
+    if (loading) {
         $("#money").text("loading...");
         return;
     }
     var loginInfo = getLogin();
-    if(!isNull(loginInfo)){
+    if (!isNull(loginInfo)) {
         $("#loggedIn").text("logged in as " + loginInfo.user);
-        $("#logoutDiv").attr("style","");
-    }else{
-        $("#logoutDiv").attr("style","visibility: hidden;");
+        $("#logoutDiv").attr("style", "");
+    } else {
+        $("#logoutDiv").attr("style", "visibility: hidden;");
     }
-    $(".ratBtn").each(function(){
+    $(".ratBtn").each(function () {
         var clickedRat = data.rats[this.id];
         $(this).text(clickedRat.getFullText());
     });
