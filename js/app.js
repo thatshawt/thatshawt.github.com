@@ -37,20 +37,20 @@ class Rat {
     toJson() {
         var stuff = {};
         stuff.cost = this.cost;
-        stuff.costPercent = this.costIncrease;
+        stuff.costIncrease = this.costIncrease;
         stuff.text = this.text;
         stuff.income = this.income;
-        stuff.moneyPercent = this.moneyIncrease;
+        stuff.moneyIncrease = this.moneyIncrease;
         stuff.total = this.total;
         return stuff;
     }
     static fromJson(json) {
         var aRat = new Rat();
         aRat.cost = json.cost;
-        aRat.costIncrease = json.costPercent;
+        aRat.costIncrease = json.costIncrease;
         aRat.text = json.text;
         aRat.income = json.income;
-        aRat.moneyIncrease = json.moneyPercent;
+        aRat.moneyIncrease = json.moneyIncrease;
         aRat.total = json.total;
         return aRat;
     }
