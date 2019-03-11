@@ -211,7 +211,7 @@ function login(user, pass, status) {
         setLogin(user, pass);
         alertify.success("loaded!");
     }, function () {
-        alertify.error("user probably doesnt exist");
+        alertify.error("naw");
     });
     $("#pass").text("yuhyuhyuh");
 }
