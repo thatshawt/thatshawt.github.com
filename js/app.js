@@ -251,7 +251,7 @@ $(function () {
             data.money = dMoney.sub(dRatCost.times(buyCount)); //subtract your money by rat cost
             data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount)); //increase your mps by rat income
             clickedRat.cost = dRatCost.add(Decimal.mul(clickedRat.costIncrease, buyCount)); //make the rats cost
-            clickedRat.income = dRatIncome.times(Decimal.mul(clickedRat.moneyIncrease, buyCount));
+            clickedRat.income = dRatIncome.add(Decimal.mul(clickedRat.moneyIncrease, buyCount),dRatIncome);
             clickedRat.total = Decimal.add(clickedRat.total, buyCount);
             data.ratsTotal = Decimal.add(data.ratsTotal, buyCount);
         }
