@@ -244,7 +244,7 @@ $(function () {
         var buyCount = getBuyCount();
         if (buyCount < 1) buyCount = 1;
 
-        console.log(clickedRat, buyCount);
+        //console.log(clickedRat, buyCount);
 
         if (dRatCost.times(buyCount).gt(data.money)) {
             alertify.error(getRand(brokeMessages));
