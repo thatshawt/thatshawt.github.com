@@ -142,7 +142,7 @@ function saveData() {
     }, function () {
         alertify.error("error!");
     });
-    //localStorage.setItem('data', LZString.compress(btoa(JSON.stringify(data))) );
+    //localStorage.setItem('data', LZString.compress(btoa(JSON.stringify(data))) ); good old days
     console.log("saved");
 }
 
@@ -154,7 +154,6 @@ function loadSaveData(json64) {
         return;
     }
     var json;
-    //we are going to assume that the thing isnt LZString or something idk
     try {
         json = JSON.parse(atob((json64)));
     } catch (megaError) {
@@ -163,7 +162,6 @@ function loadSaveData(json64) {
         return;
     }
     console.log(json);
-
     for (var key in json) {
         if (key === "rats") continue;
         if (isNull(json[key])) continue;
@@ -217,7 +215,10 @@ function login(user, pass, status) {
 }
 
 var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck",
-    "stop", "bruh moment", "E", "F", "cmon dood", "no me", "frike", "deletus moneyus"
+    "stop", "bruh moment", "E", "F", "cmon dood", "no me", "frike", "deletus moneyus",
+    "hola hola get dolla", "share with ur freidns", "this is a typo", "step on a crack break moma's back",
+    "cligga", "squigga", "u dont want da smok", "drugs are bad", "do think", "watch ads or something",
+    "buy something cheaper", "happy(t)=minecraft(t)/bad(t)"
 ];
 var timePassed = 0;
 var d;
@@ -342,7 +343,22 @@ var topMsg = ["ur rats are worldwide buddy", "rats are taking all our jobs",
     "Ratosis - natural phenomenon when rat quantum tunnels through physical realm and transcends all other rats and grants him God-like power",
     "Cheese - a rats favorite meal", "chEesey", "May the rAt be with you...", "T-Frik",
     "rat shart - similar to cheese except many times stronger. CAUTION do not overdose rats with sharts",
-    "make sewers great again", "rat care"
+    "make sewers great again", "rat care",
+    "go to college for biggest brain", "big brain care", "see rat, say rat", "Ill seE YOu, aROUNd thE ReEF",
+    "cant wait till pi day", "pi is pretty big", "somehow i wilt be tracking you",
+    "get good grades please", "merch", "jake paul more like boiled frop", "rarted fropsticle",
+    "S in front of G", "this is the culmination of hours of coding", "3d tic tac toe is lit",
+    "try strategy its cool", "think bout it", "bruh emoji", "the Rat giveth, he also taketh",
+    "how does a rat democracy sound?", "why does my dog keep eating the sofa",
+    "rats fill you with determination!", "thiNK", "idk bout that", "just add: 'idk tho'",
+    "dont tell strangers where you sleep please", "how to be ironically ironic",
+    "the minions are immortal curses", "minions are yellow and pill shaped",
+    "organized government in minecraft", "invest your money please",
+    "supply and demand rule the nine rat realms", "do rats know about a possible multiverse?",
+    "rats may just be deformations in space caused by the minions", "ik this sounds crazy but...E",
+    "if einstein is so smart then why is he dead? huh tell me?", "exercise helps a big brain out",
+    "idk why but watermelon tastes good", "why does light run so fast, like slow down lol",
+    "light starts with an L thats why i never open my eyes", "B R A I N E X P A N D"
 ];
 
 function changeMessage() {
