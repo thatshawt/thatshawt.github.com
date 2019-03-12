@@ -70,14 +70,14 @@ class Rat {
 
 data.rats = {};
 
-data.rats.thiccRat = new Rat().cost("10").costIncrease(10).income("1").moneyIncrease("1").text("One Thic Ratt | ");
-data.rats.hazmatRat = new Rat().cost("10000").costIncrease(10000).income("5000").moneyIncrease("1000").text("Hazmat Rat | ");
-data.rats.cdcRat = new Rat().cost("1000000").costIncrease(1000000).income("500000").moneyIncrease("100000").text("CDC Rat | ");
-data.rats.stripperRat = new Rat().cost("999999999999").costIncrease(999999999999).income("499999999999.5").moneyIncrease("99999999999.9").text("Stripper Rat | ");
-data.rats.obamaRat = new Rat().cost("57000").costIncrease(57000).income("28500").moneyIncrease("5700").text("President Barat | ");
-data.rats.ratrump = new Rat().cost("57000").costIncrease(57000).income("28500").moneyIncrease("5700").text("President Ratrump | ");
-data.rats.loanRat = new Rat().cost("1").costIncrease(1).income("1").moneyIncrease("0.10").text("son of a million rats Rat | ");
-data.rats.gambinoRat = new Rat().cost("999999999999999").costIncrease(999999999999999).income("499999999999999.5").moneyIncrease("99999999999999.9").text("Gambino Rat | ");
+data.rats.thiccRat = new Rat().cost("10").costIncrease(10).income("0.1").moneyIncrease("1").text("One Thic Ratt | ");
+data.rats.hazmatRat = new Rat().cost("10000").costIncrease(10000).income("500").moneyIncrease("1000").text("Hazmat Rat | ");
+data.rats.cdcRat = new Rat().cost("1000000").costIncrease(1000000).income("50000").moneyIncrease("100000").text("CDC Rat | ");
+data.rats.stripperRat = new Rat().cost("999999999999").costIncrease(999999999999).income("49999999999").moneyIncrease("99999999999.9").text("Stripper Rat | ");
+data.rats.obamaRat = new Rat().cost("57000").costIncrease(57000).income("2850").moneyIncrease("5700").text("President Barat | ");
+data.rats.ratrump = new Rat().cost("57000").costIncrease(57000).income("2850").moneyIncrease("5700").text("President Ratrump | ");
+data.rats.loanRat = new Rat().cost("1").costIncrease(1).income("0.1").moneyIncrease("0.10").text("son of a million rats Rat | ");
+data.rats.gambinoRat = new Rat().cost("999999999999999").costIncrease(999999999999999).income("49999999999999").moneyIncrease("99999999999999.9").text("Gambino Rat | ");
 
 data.rats.thiccRat.story("He thicc");
 data.rats.hazmatRat.story("went sicko mode after eating a shart");
