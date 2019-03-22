@@ -251,7 +251,7 @@ $(function () {
             alertify.error(getRand(brokeMessages));
         } else {
             data.money = dMoney.sub(resultCost); //subtract your money by rat cost
-            data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount)); //increase your mps by rat income
+            data.mps = Decimal.add(data.mps, resultCost); //increase your mps by rat income
             clickedRat.cost = resultCost; //make the rats cost
             //clickedRat.income = dRatIncome.add(Decimal.mul(clickedRat.moneyIncrease, buyCount),dRatIncome);
             clickedRat.total = Decimal.add(clickedRat.total, buyCount);
