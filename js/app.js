@@ -218,7 +218,7 @@ var brokeMessages = ["ur broke sir", "no monei", "no", "frikin heck",
     "stop", "bruh moment", "E", "F", "cmon dood", "no me", "frike", "deletus moneyus",
     "hola hola get dolla", "share with ur freidns", "this is a typo", "step on a crack break moma's back",
     "cligga", "squigga", "u dont want da smok", "drugs are bad", "do think", "watch ads or something",
-    "buy something cheaper", "happy(t)=minecraft(t)/bad(t)"
+    "buy something cheaper", "happy(t)=dminecraft(t)/dbad(t)"
 ];
 var timePassed = 0;
 var d;
@@ -251,7 +251,7 @@ $(function () {
         } else {
             data.money = dMoney.sub(dRatCost.times(buyCount)); //subtract your money by rat cost
             data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount)); //increase your mps by rat income
-            clickedRat.cost = dRatCost.add(Decimal.mul(clickedRat.costIncrease, buyCount)); //make the rats cost
+            clickedRat.cost = Decimal.mul("1.01", Decimal.mul(clickedRat.costIncrease, buyCount)); //make the rats cost
             //clickedRat.income = dRatIncome.add(Decimal.mul(clickedRat.moneyIncrease, buyCount),dRatIncome);
             clickedRat.total = Decimal.add(clickedRat.total, buyCount);
             data.ratsTotal = Decimal.add(data.ratsTotal, buyCount);
