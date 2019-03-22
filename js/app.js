@@ -242,6 +242,7 @@ $(function () {
         var dRatCost = new Decimal(clickedRat.cost);
         var dMoney = new Decimal(data.money);
         var buyCount = getBuyCount();
+        var resultCost = Decimal.mul(dRatCost, Decimal.pow("1.01",buyCount-1));
         if (buyCount < 1) buyCount = 1;
 
         //console.log(clickedRat, buyCount);
@@ -249,9 +250,9 @@ $(function () {
         if (dRatCost.times(buyCount).gt(data.money)) {
             alertify.error(getRand(brokeMessages));
         } else {
-            data.money = dMoney.sub(dRatCost.times(buyCount)); //subtract your money by rat cost
+            data.money = dMoney.sub(resultCost); //subtract your money by rat cost
             data.mps = Decimal.add(data.mps, dRatIncome.times(buyCount)); //increase your mps by rat income
-            clickedRat.cost = Decimal.mul(dRatCost, Decimal.pow("1.01",buyCount-1)); //make the rats cost
+            clickedRat.cost = resultCost; //make the rats cost
             //clickedRat.income = dRatIncome.add(Decimal.mul(clickedRat.moneyIncrease, buyCount),dRatIncome);
             clickedRat.total = Decimal.add(clickedRat.total, buyCount);
             data.ratsTotal = Decimal.add(data.ratsTotal, buyCount);
